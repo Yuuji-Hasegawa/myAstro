@@ -1,0 +1,77 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+
+.c-hero-heading,
+.c-heading,
+.c-trim-heading,
+.c-border-heading,
+.c-entry h2,
+.c-entry h3 {
+  line-height: setting.lineheight(heading);
+}
+
+.c-hero-heading {
+  display: flex;
+  flex-direction: column;
+  gap: setting.spaces(s);
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding-right: setting.spaces(base);
+  padding-left: setting.spaces(base);
+  font-size: clamp(setting.fontsize(l), calc((100vw - 360px) * 999), setting.fontsize(xl));
+  color: var(--c-bg);
+  text-align: center;
+  text-shadow: 0 0 6px var(--c-dimmed);
+  background: var(--c-overlay);
+
+  &__lead {
+    font-size: clamp(setting.fontsize(m), calc((100vw - 360px) * 999), setting.fontsize(l));
+  }
+}
+
+.c-heading {
+  font-size: clamp(setting.fontsize(l), calc((100vw - 650px) * 999), setting.fontsize(xl));
+
+  &\:min {
+    font-size: clamp(setting.fontsize(m), calc((100vw - 650px) * 999), setting.fontsize(l));
+  }
+}
+
+.c-entry h2,
+.c-entry h3 {
+  font-weight: setting.fontweight(b);
+}
+
+.c-entry h2 {
+  font-size: clamp(setting.fontsize(m), calc((100vw - 650px) * 999), setting.fontsize(l));
+
+  & + * {
+    margin-top: setting.spaces(m);
+  }
+}
+
+.c-entry h3 {
+  font-size: setting.fontsize(m);
+
+  & + * {
+    margin-top: setting.spaces(base);
+  }
+}
+
+.c-entry h3,
+.c-border-heading {
+  padding-left: setting.spaces(xs);
+  border-left: solid 5px setting.brandcolor(base);
+}
+
+.c-trim-heading {
+  max-height: calc(setting.fontsize(m) * setting.lineheight(heading) * 2);
+
+  /*
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  */
+  overflow: hidden;
+}

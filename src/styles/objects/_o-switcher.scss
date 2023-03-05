@@ -1,0 +1,81 @@
+@use "../settings" as setting;
+
+.o-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  &\:footer {
+    justify-content: space-between;
+  }
+
+  &\:footer-list {
+    gap: 0 setting.spaces(base);
+    margin-bottom: clamp(setting.spaces(xs), calc((768px - 100vw) * 999), setting.spaces(m));
+    border-bottom-style: solid;
+    border-bottom-color: var(--c-border);
+    border-bottom-width: clamp(0px, calc((768px - 100vw) * 999), 1px);
+  }
+  &\:bottom-list {
+    gap: 0 clamp(0px, calc((100vw - 768px) * 999), setting.spaces(base));
+    margin-bottom: clamp(0px, calc((768px - 100vw) * 999), setting.spaces(m));
+  }
+
+  /*
+  &\:gap-xs {
+    gap: setting.spaces(xs);
+  }
+
+  &\:gap-base {
+    gap: setting.spaces(m) setting.spaces(base);
+  }
+
+  &\:gap-none {
+    gap: setting.spaces(m) 0;
+  }
+
+  &__detail {
+    flex-basis: calc((540px - 100vw) * 999);
+    flex-grow: 1;
+  }
+
+  &__full-half-quart {
+    width: clamp(calc(50% - (setting.spaces(base) / 2)), calc((768px - 100vw) * 999), 100%);
+    max-width: max(calc(1000px - 100vw) * 999, calc((100% - setting.spaces(base) * 3) / 4));
+  }
+
+  &__half-quart {
+    width: calc(50% - (setting.spaces(base) / 2));
+    max-width: max(calc(810px - 100vw) * 999, calc((100% - setting.spaces(base) * 3) / 4));
+
+    .o-switcher\:gap-none & {
+      width: 50%;
+      max-width: max(calc(810px - 100vw) * 999, 25%);
+    }
+  }
+
+  &__one-third {
+    width: 100%;
+    max-width: max(calc(810px - 100vw) * 999, calc((100% - setting.spaces(base) * 2) / 3));
+
+    .o-switcher\:gap-none & {
+      max-width: max(calc(810px - 100vw) * 999, calc(100% / 3));
+    }
+  }
+
+  &__media-pict-area,
+  &__media-txt-area {
+    width: 100%;
+  }
+
+  &__media-pict-area {
+    max-width: max(calc(540px - 100vw) * 999, 45%);
+  }
+
+  &__media-txt-area {
+    max-width: max(calc((540px - 100vw) * 999), calc(100% - 45% - setting.spaces(base)));
+    padding: clamp(setting.spaces(xs), calc(540px - 100vw) * 999, setting.spaces(l)) setting.spaces(xs);
+  }
+  */
+}

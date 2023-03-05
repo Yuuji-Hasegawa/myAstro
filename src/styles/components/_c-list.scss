@@ -1,0 +1,76 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+
+.c-entry ul,
+.c-entry ol,
+.c-disc-list {
+  list-style-position: outside;
+}
+
+.c-entry ul,
+.c-disc-list {
+  padding-left: setting.spaces(m);
+  list-style-type: disc;
+}
+
+.c-entry ol {
+  padding-left: calc(setting.spaces(base) * 2);
+  list-style-type: decimal;
+}
+
+.c-entry ul,
+.c-entry ol {
+  & + * {
+    margin-top: setting.spaces(base);
+  }
+}
+
+.c-count-list {
+  &\:sec {
+    counter-reset: sec;
+  }
+
+  &\:sub-sec {
+    counter-reset: subsec;
+  }
+
+  &__item {
+    position: relative;
+    padding-left: calc(setting.spaces(base) * 2);
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 2rem;
+      text-align: center;
+    }
+
+    .c-count-list\:sec & {
+      counter-increment: sec;
+
+      &::before {
+        content: counter(sec) ".";
+      }
+    }
+
+    .c-count-list\:sub-sec & {
+      counter-increment: subsec;
+
+      &::before {
+        content: "(" counter(subsec) ")";
+      }
+    }
+  }
+}
+
+.c-notice-item {
+  position: relative;
+  padding-left: setting.spaces(base);
+
+  &::before {
+    position: absolute;
+    left: 0;
+    content: "※";
+  }
+}

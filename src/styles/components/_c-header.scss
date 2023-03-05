@@ -1,0 +1,28 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+
+.c-header-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0px, calc((100vw - 768px) * 999), setting.spaces(s));
+
+  @include tool.max-screen(767px) {
+    &-wrapper {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 9999;
+      display: none;
+      width: 100%;
+      background: var(--c-bg);
+
+      &\:is-open {
+        display: block;
+      }
+    }
+
+    &__item {
+      width: 100%;
+    }
+  }
+}

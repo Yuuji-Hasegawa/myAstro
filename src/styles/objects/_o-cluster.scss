@@ -1,0 +1,14 @@
+@use "../settings" as setting;
+
+.o-cluster {
+  display: flex;
+  flex-wrap: wrap;
+
+  &\:follow {
+    gap: setting.spaces(base);
+  }
+
+  /*
+    gap: setting.spaces(base);
+  */
+}

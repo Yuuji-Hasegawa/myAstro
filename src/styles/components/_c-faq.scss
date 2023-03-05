@@ -1,0 +1,58 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+
+.c-faq {
+  cursor: pointer;
+
+  &__q,
+  &__a {
+    position: relative;
+    padding-left: calc(setting.fontsize(l) + setting.spaces(2xs));
+
+    &::before {
+      position: absolute;
+      top: -2px;
+      left: 0;
+      font-family: setting.$font-family-en;
+      font-size: setting.fontsize(l);
+      font-weight: setting.fontweight(b);
+      line-height: 1;
+    }
+  }
+
+  &__q {
+    &::before {
+      color: setting.brandcolor(dark);
+      content: "Q.";
+    }
+
+    &::after {
+      position: absolute;
+      top: 8px;
+      right: 2px;
+      width: 9px;
+      height: 9px;
+      content: "";
+      border-color: inherit;
+      border-style: solid;
+      border-width: 0 2px 2px 0;
+      transition: transform setting.animes(duration) setting.animes(timing);
+      transform: rotate(45deg);
+
+      .c-faq[open] & {
+        transform: rotate(-135deg);
+      }
+    }
+
+    .c-faq[open] & {
+      margin-bottom: setting.spaces(base);
+    }
+  }
+
+  &__a {
+    &::before {
+      color: setting.brandcolor(light);
+      content: "A.";
+    }
+  }
+}

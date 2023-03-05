@@ -1,0 +1,197 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+
+.c-input-txt {
+  padding: setting.spaces(xs);
+  resize: none;
+  background: var(--c-overlay);
+
+  @include tool.placeholder(var(--c-separator));
+
+  &:focus {
+    outline: 1px solid setting.brandcolor(light);
+    outline-offset: 1px;
+  }
+
+  &\:zip,
+  &\:pref {
+    width: 10em;
+  }
+
+  &\:full,
+  &\:search,
+  &\:share {
+    width: 100%;
+  }
+
+  &\:search {
+    padding-right: 50px;
+  }
+
+  &\:stretch {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    color: transparent;
+    cursor: pointer;
+    border-color: transparent;
+    border-radius: 80px;
+    transition: width setting.animes(duration) setting.animes(timing);
+    transform: translateY(-50%);
+
+    @include tool.placeholder(transparent);
+
+    + label {
+      position: absolute;
+      top: 50%;
+      right: 8px;
+      font-size: calc(setting.fontsize(s) * 1.5);
+      line-height: 1;
+      color: var(--c-txt);
+      pointer-events: none;
+      transform: translateY(-50%);
+    }
+
+    &:focus {
+      width: 100%;
+      max-width: max(calc((540px - 100vw) * 999), 350px);
+      padding: 8px 40px 8px 16px;
+      color: var(--c-txt);
+      background: var(--c-input);
+      border-color: setting.brandcolor(base);
+      outline: none;
+
+      @include tool.placeholder(var(--c-separator));
+
+      + label {
+        color: setting.brandcolor(base);
+      }
+    }
+  }
+}
+
+.c-input-select {
+  position: relative;
+  display: table;
+  cursor: pointer;
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    right: calc(setting.spaces(base) / 2);
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    content: "";
+    border-color: var(--c-txt) transparent transparent transparent;
+    border-style: solid;
+    border-width: 7px 6px 0;
+    transform: translateY(-50%);
+  }
+
+  &__inner {
+    padding: setting.spaces(xs) calc(setting.spaces(base) + 12px) setting.spaces(xs) setting.spaces(base);
+    color: var(--c-txt);
+    background: var(--c-overlay);
+
+    &:focus {
+      outline: 1px solid setting.brandcolor(light);
+      outline-offset: 1px;
+    }
+  }
+}
+
+.c-input-choice {
+  position: relative;
+  width: setting.fontsize(s);
+  height: setting.fontsize(s);
+  background: var(--c-overlay);
+  border: solid 1px var(--c-border);
+
+  &:focus {
+    outline: 1px solid setting.brandcolor(light);
+    outline-offset: 1px;
+  }
+
+  &:checked {
+    background: setting.brandcolor(base);
+
+    &::after {
+      position: absolute;
+      content: "";
+    }
+  }
+
+  &\:radio {
+    border-radius: 50%;
+
+    &::after {
+      top: 50%;
+      left: 50%;
+      width: calc(setting.fontsize(xs) / 3);
+      height: calc(setting.fontsize(xs) / 3);
+      background: setting.lightcolor(bg);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &\:check {
+    &:checked {
+      &::after {
+        top: calc(50% - 2px);
+        left: 50%;
+        width: setting.fontsize(xs);
+        height: calc(setting.fontsize(xs) / 2);
+        border-color: setting.lightcolor(bg);
+        border-style: solid;
+        border-width: 0 0 2px 2px;
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+  }
+}
+
+.c-has-require {
+  position: relative;
+  display: block;
+  padding-right: calc(setting.spaces(xs) + 40px);
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: setting.spaces(3xs) setting.spaces(2xs);
+    font-size: setting.fontsize(xs);
+    line-height: setting.lineheight(heading);
+    color: setting.lightcolor(bg);
+    content: "必須";
+    background: setting.brandcolor(base);
+  }
+}
+
+.c-input-copy,
+.c-input-search {
+  position: relative;
+  display: flex;
+}
+
+.c-stretch-search {
+  position: relative;
+}
+
+.c-copy-message {
+  position: absolute;
+  top: calc(100% + setting.spaces(s));
+  left: 50%;
+  z-index: 999;
+  display: table;
+  padding: setting.spaces(xs);
+  font-weight: setting.fontweight(m);
+  color: #fff;
+  text-align: center;
+  background: setting.brandcolor(base);
+  transform: translateX(-50%);
+}

@@ -1,0 +1,25 @@
+@use "../settings" as setting;
+
+.u-bg {
+  &-base {
+    background: var(--c-bg);
+  }
+
+  &-overlay {
+    background: var(--c-overlay);
+  }
+}
+
+.u-txt {
+  &-dimmed {
+    color: var(--c-dimmed);
+  }
+
+  &-brand {
+    color: setting.brandcolor(base);
+  }
+
+  &-white {
+    color: setting.lightcolor(bg);
+  }
+}

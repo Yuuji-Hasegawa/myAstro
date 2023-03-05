@@ -1,0 +1,11 @@
+@use "../settings" as setting;
+
+.o-reel {
+  display: flex;
+  padding-bottom: setting.spaces(xs);
+  overflow-x: auto;
+
+  > * {
+    flex-shrink: 0;
+  }
+}

@@ -1,0 +1,50 @@
+@use "../settings" as setting;
+
+.u-txt {
+  &-left {
+    text-align: left;
+  }
+
+  &-center {
+    text-align: center;
+  }
+
+  &-right {
+    text-align: right;
+  }
+
+  &-medium {
+    font-weight: setting.fontweight(m);
+  }
+
+  &-bold {
+    font-weight: setting.fontweight(b);
+  }
+
+  &-s {
+    font-size: setting.fontsize(xs);
+  }
+
+  &-m {
+    font-size: setting.fontsize(m);
+  }
+
+  &-l {
+    font-size: setting.fontsize(l);
+  }
+
+  &-en {
+    font-family: setting.$font-family-en;
+  }
+
+  &-break {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+.u-lineheight {
+  &-min {
+    line-height: 1;
+  }
+}

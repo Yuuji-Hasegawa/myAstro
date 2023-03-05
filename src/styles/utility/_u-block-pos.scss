@@ -1,0 +1,45 @@
+.u-db {
+  display: block;
+}
+
+.u-display-ib {
+  display: inline-block;
+}
+
+.u-dt {
+  display: table;
+}
+
+.u-block {
+  &-left,
+  &-center {
+    margin-right: auto;
+  }
+
+  &-center,
+  &-right {
+    margin-left: auto;
+  }
+}
+
+.u-flex {
+  &-center {
+    justify-content: center;
+  }
+
+  &-align-center {
+    align-items: center;
+  }
+
+  &-shrink-none {
+    flex-shrink: 0;
+  }
+
+  &-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  &-column-reverse {
+    flex-direction: column-reverse;
+  }
+}

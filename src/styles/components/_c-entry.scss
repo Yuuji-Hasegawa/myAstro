@@ -1,0 +1,30 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+
+.c-entry {
+  p {
+    line-height: setting.lineheight(body);
+  }
+}
+
+.c-redume-marker {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transition: transform 0.1s ease-out;
+  transform: translateY(-50%);
+
+  .c-redume[open] & {
+    transform: translateY(-50%) rotate(180deg);
+  }
+}
+
+.c-author-pict {
+  width: 100px;
+}
+
+.c-author-name {
+  display: table;
+  width: min(calc((100vw - 540px) * 999), 100%);
+  min-width: max-content;
+}

@@ -1,0 +1,27 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+
+.c-breadcrumb {
+  &-item {
+    position: relative;
+
+    &:not(:last-of-type) {
+      &::after {
+        position: absolute;
+        top: 50%;
+        right: -6px;
+        width: 7px;
+        height: 7px;
+        content: "";
+        border-color: var(--c-separator);
+        border-style: solid;
+        border-width: 0 1px 1px 0;
+        transform: translateY(-50%) rotate(-45deg);
+      }
+    }
+  }
+
+  &-link {
+    line-height: 1;
+  }
+}

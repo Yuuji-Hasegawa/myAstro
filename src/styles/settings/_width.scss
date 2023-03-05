@@ -1,0 +1,10 @@
+@use "sass:map";
+
+@function itemsize($key) {
+  @return map.get($sizes, $key);
+}
+
+$sizes: (
+  content: 40em,
+  wrapper: 70em,
+) !default;

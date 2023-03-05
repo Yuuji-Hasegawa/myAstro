@@ -1,0 +1,54 @@
+@use "sass:map";
+@use "sass:color";
+
+$brand: #2c6c60;
+$brand-colors: (
+  base: $brand,
+  light: color.adjust($brand, $lightness: 15%, $saturation: -10%, $hue: -1deg),
+  dark: color.adjust($brand, $lightness: -15%, $saturation: 10%, $hue: 1deg),
+) !default;
+
+@function brandcolor($key) {
+  @return map.get($brand-colors, $key);
+}
+
+$grayH: color.hue($brand);
+$grayS: 10%;
+$grayBase: 93%;
+$grayLevel: 11.3%;
+$grayDarkL: $grayBase - $grayLevel * 2;
+$grayL: $grayBase - $grayLevel * 5;
+$grayPaleL: $grayBase - $grayLevel * 7;
+$grayLightness: 93%;
+$grayLightnessIncrement: 11.3%;
+$light-colors: (
+  bg: #fff,
+  overlay: hsla($grayH, $grayS, $grayPaleL, 7%),
+  input: hsl($grayH, $grayS - 7%, $grayBase + 1%),
+  txt: hsl($grayH, $grayS, $grayPaleL),
+  dimmed: hsla($grayH, $grayS, $grayPaleL, 50%),
+  border: hsla($grayH, $grayS, $grayPaleL, 10%),
+  separator: hsla($grayH, $grayS, $grayDarkL),
+  btnBg: hsla($grayH, $grayS, $grayDarkL),
+  accent: #c82e2e,
+);
+
+@function lightcolor($key) {
+  @return map.get($light-colors, $key);
+}
+
+$dark-colors: (
+  bg: hsl($grayH, $grayS, $grayPaleL),
+  overlay: hsla($grayH, $grayS, $grayBase, 7%),
+  input: hsl($grayH, $grayS - 4%, $grayBase - 74%),
+  txt: hsl($grayH, $grayS, $grayBase),
+  dimmed: hsla($grayH, $grayS, $grayBase, 50%),
+  border: hsla($grayH, $grayS, $grayBase, 10%),
+  separator: hsla($grayH, $grayS, $grayL),
+  btnBg: hsla($grayH, $grayS, $grayL),
+  accent: #ff5a5a,
+);
+
+@function darkcolor($key) {
+  @return map.get($dark-colors, $key);
+}

@@ -1,0 +1,22 @@
+@use "sass:math";
+@use "sass:map";
+
+$base: 24px; /* 16 * 1.5rem */
+$ratio: 1.618;
+
+@function spaces($key) {
+  @return map.get($spaces, $key);
+}
+
+$spaces: (
+  3xs: math.div(math.div(math.div(math.div($base, $ratio), $ratio), $ratio), $ratio),
+  2xs: math.div(math.div(math.div($base, $ratio), $ratio), $ratio),
+  xs: math.div(math.div($base, $ratio), $ratio),
+  s: math.div($base, $ratio),
+  base: 16px,
+  /* 16 * 1rem */ m: $base,
+  l: $base * $ratio,
+  xl: $base * $ratio * $ratio,
+  2xl: $base * $ratio * $ratio * $ratio,
+  3xl: $base * $ratio * $ratio * $ratio * $ratio,
+) !default;

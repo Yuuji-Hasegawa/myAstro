@@ -1,0 +1,37 @@
+@use "../settings" as setting;
+
+.o-container {
+  box-sizing: content-box;
+  padding-right: setting.spaces(base);
+  padding-left: setting.spaces(base);
+
+  &\:wrapper,
+  &\:content {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  &\:wrapper {
+    max-width: setting.itemsize(wrapper);
+  }
+
+  &\:content {
+    max-width: setting.itemsize(content);
+  }
+
+  &\:header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px clamp(setting.spaces(2xs), calc(3.5vw - setting.spaces(base)), setting.spaces(base));
+  }
+
+  /*
+  &\:breadcrumb {
+    padding: 0 clamp(setting.spaces(2xs), calc(3.5vw - setting.spaces(base)), setting.spaces(base));
+    border-color: var(--c-separator);
+    border-style: solid;
+    border-width: 1px 0;
+  }
+  */
+}

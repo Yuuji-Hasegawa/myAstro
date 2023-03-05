@@ -1,0 +1,20 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+.c-section-contact {
+  padding-top: clamp(setting.spaces(l), calc((100vw - 768px) * 999), setting.spaces(2xl));
+  padding-bottom: clamp(setting.spaces(l), calc((100vw - 768px) * 999), setting.spaces(xl));
+  background: setting.brandcolor(base);
+}
+.c-to-inquiry-heading,
+.c-to-inquiry-txt {
+  color: setting.lightcolor(bg);
+}
+.c-to-inquiry-heading {
+  font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(l));
+  font-weight: setting.fontweight(b);
+  margin-bottom: setting.spaces(m);
+}
+.c-to-inquiry-txt {
+  line-height: setting.lineheight(body);
+  margin-bottom: clamp(setting.spaces(m), calc((100vw - 768px) * 999), setting.spaces(xl));
+}

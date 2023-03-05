@@ -1,0 +1,234 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+
+.c-btn {
+  display: table;
+  padding: setting.spaces(xs) setting.spaces(s);
+  font-size: setting.fontsize(m);
+  font-weight: setting.fontweight(b);
+  color: setting.lightcolor(bg);
+  cursor: pointer;
+  background: setting.brandcolor(base);
+  border: solid 1px transparent;
+
+  &:hover,
+  &:focus {
+    color: setting.brandcolor(light);
+    background: setting.brandcolor(dark);
+  }
+
+  &:focus {
+    outline: 1px solid setting.brandcolor(light);
+    outline-offset: 1px;
+  }
+
+  /*
+  &\:link,
+  &\:button {
+
+  }
+
+  &\:button {
+
+  }
+  */
+
+  &:disabled {
+    color: var(--c-dimmed);
+    pointer-events: none;
+    background: var(--c-overlay);
+  }
+
+  &\:go-to-inquiry {
+    background: var(--c-accent);
+    width: 100%;
+    max-width: 370px;
+    padding: clamp(setting.spaces(base), calc((100vw - 768px) * 999), setting.spaces(m));
+    &:hover,
+    &:focus {
+      opacity: 1;
+      background: setting.lightcolor(bg);
+      color: var(--c-accent);
+    }
+    &:focus {
+      outline-color: var(--c-accent);
+    }
+  }
+
+  /*
+
+  &\:search {
+    position: absolute;
+    right: 0;
+    color: inherit;
+    background: transparent;
+
+    &:hover,
+    &:focus {
+      color: inherit;
+      background: transparent;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  */
+
+  &\:ghost {
+    background: transparent;
+    border: solid 1px;
+
+    &:hover,
+    &:focus {
+      color: setting.lightcolor(dimmed);
+      background: setting.lightcolor(bg);
+    }
+  }
+
+  /*
+  &\:pager {
+  }
+  */
+}
+/*
+.c-menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  padding: 13px 10px;
+  cursor: pointer;
+
+  &:focus {
+    outline: 1px solid setting.brandcolor(light);
+  }
+
+  &__inner {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    background: var(--c-txt);
+    transition: all ease-out 0.3s;
+
+    &::before,
+    &::after {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      content: "";
+      background-color: var(--c-txt);
+      transition: all ease-out 0.3s;
+    }
+
+    &::before {
+      top: -11px;
+    }
+
+    &::after {
+      bottom: -11px;
+    }
+
+    .c-menu-btn\:is-open & {
+      background: transparent;
+
+      &::before {
+        top: 0;
+        transform: rotate(-45deg);
+      }
+
+      &::after {
+        bottom: 0;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  @include tool.min-screen(768px) {
+    display: none;
+  }
+}
+
+.c-sidebar-btn {
+  position: fixed;
+  right: clamp(setting.spaces(2xs), calc(3.5vw - setting.spaces(base)), setting.spaces(base));
+  bottom: setting.spaces(base);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  font-size: 32px;
+  color: setting.lightcolor(bg);
+  cursor: pointer;
+  background: rgba(setting.brandcolor(dark),0.7);
+  border-radius: 50%;
+  box-shadow: 0 0 2px setting.brandcolor(dark);
+  transition: all setting.animes(duration) setting.animes(timing);
+
+  &:focus,
+  &:hover {
+    color: setting.lightcolor(dimmed);
+    background: rgba(setting.lightcolor(bg),0.7);
+  }
+
+  &\:is-open {
+    right: calc(clamp(setting.spaces(2xs), calc(3.5vw - setting.spaces(base)), setting.spaces(base)) + 240px);
+  }
+}
+
+.c-sidebar {
+  position: fixed;
+  top: 0;
+  right: -240px;
+  z-index: 1000;
+  width: 100%;
+  max-width: 240px;
+  height: 100vh;
+  pointer-events: none;
+  background: setting.brandcolor(dark);
+  box-shadow: 0 0 2px setting.lightcolor(overlay);
+  transition: right setting.animes(duration) setting.animes(timing);
+
+  &\:is-open {
+    right: 0;
+    pointer-events: auto;
+    transition: right setting.animes(duration) setting.animes(timing);
+  }
+}
+
+.c-sidebar-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 998;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  visibility: hidden;
+  background: setting.brandcolor(light);
+  opacity: 0;
+  transition: opacity setting.animes(duration) setting.animes(timing);
+
+  .c-sidebar\:is-open + & {
+    display: block;
+    pointer-events: auto;
+    cursor: pointer;
+    visibility: visible;
+    opacity: setting.animes(opacity);
+    transition: opacity setting.animes(duration) setting.animes(timing);
+  }
+}
+
+body.is-fixed {
+  position: fixed;
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+}
+*/

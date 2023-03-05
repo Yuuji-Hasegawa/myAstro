@@ -1,0 +1,17 @@
+@use "../settings" as setting;
+
+.o-box {
+  outline: 1px transparent;
+  outline-offset: -1px;
+
+  /*
+  &\:border {
+    border: 1px solid var(--c-border);
+  }
+
+  &\:catLink {
+    display: table;
+    max-width: max-content;
+  }
+  */
+}

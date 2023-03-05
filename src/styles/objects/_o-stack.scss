@@ -1,0 +1,45 @@
+@use "../settings" as setting;
+
+.o-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  /*
+  &\:xxs {
+    & > * + * {
+      margin-top: setting.spaces(2xs);
+    }
+  }
+
+  &\:xs {
+    & > * + * {
+      margin-top: setting.spaces(xs);
+    }
+  }
+
+  &\:s {
+    & > * + * {
+      margin-top: setting.spaces(s);
+    }
+  }
+
+  &\:base {
+    & > * + * {
+      margin-top: setting.spaces(base);
+    }
+  }
+
+  &\:m {
+    & > * + * {
+      margin-top: setting.spaces(m);
+    }
+  }
+
+  &\:l {
+    & > * + * {
+      margin-top: setting.spaces(l);
+    }
+  }
+  */
+}
