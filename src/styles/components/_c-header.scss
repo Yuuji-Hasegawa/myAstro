@@ -1,28 +1,47 @@
 @use "../settings" as setting;
 @use "../tools" as tool;
 
-.c-header-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(0px, calc((100vw - 768px) * 999), setting.spaces(s));
-
+.o-cluster\:c-pc-nav {
+  gap: setting.spaces(base);
   @include tool.max-screen(767px) {
-    &-wrapper {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      z-index: 9999;
-      display: none;
-      width: 100%;
-      background: var(--c-bg);
-
-      &\:is-open {
-        display: block;
-      }
+    display: none;
+  }
+}
+.c-pc-nav-link {
+  display: block;
+  padding: setting.spaces(xs) 0;
+  font-weight: setting.fontweight(b);
+}
+#spNav {
+  @include tool.min-screen(768px) {
+    display: none;
+  }
+}
+.c-sp-nav {
+  padding-top: setting.spaces(3xs);
+  &__item {
+    border-top: solid 1px setting.lightcolor(bg);
+  }
+  &__link {
+    display: flex;
+    flex-direction: column;
+    gap: setting.spaces(3xs);
+    font-size: setting.fontsize(xs);
+    font-weight: setting.fontweight(m);
+    padding: setting.spaces(s) 0;
+    &__en {
+      font-family: setting.$font-family-en;
+      color: var(--c-accent);
+      font-weight: setting.fontweight(b);
     }
-
-    &__item {
-      width: 100%;
-    }
+  }
+}
+.c-sp-to-inquiry {
+  font-size: setting.fontsize(xs);
+  font-weight: setting.fontweight(m);
+  & + * {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: setting.spaces(m);
   }
 }

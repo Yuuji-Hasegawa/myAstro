@@ -23,7 +23,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 3px clamp(setting.spaces(2xs), calc(3.5vw - setting.spaces(base)), setting.spaces(base));
+    padding-top: 3px;
+    padding-bottom: 3px;
   }
 
   /*

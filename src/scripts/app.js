@@ -1,2 +1,2 @@
-import { dummy } from "./dummy.js"
-dummy()
+import { menu } from "./menu.js"
+menu()

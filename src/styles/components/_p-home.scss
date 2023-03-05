@@ -1,6 +1,211 @@
 @use "../settings" as setting;
 @use "../tools" as tool;
 
+.p-home-hero {
+  padding-top: clamp(setting.spaces(xl), calc((100vw - 768px) * 999), setting.spaces(3xl));
+  padding-bottom: clamp(setting.spaces(xl), calc((100vw - 768px) * 999), setting.spaces(3xl));
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: rgba(setting.lightcolor(txt), 0.7);
+  }
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+  }
+}
+.o-frame\:hero {
+  min-height: 100%;
+}
+.p-home-hero-heading {
+  font-family: setting.$font-family-en;
+  font-size: clamp(setting.fontsize(l), calc((100vw - 768px) * 999), setting.fontsize(2xl));
+  line-height: setting.lineheight(heading);
+  font-weight: setting.fontweight(b);
+  margin-bottom: clamp(setting.spaces(l), calc((100vw - 768px) * 999), setting.spaces(xl));
+}
+.p-home-hero-lead {
+  max-width: 40rem;
+  line-height: setting.lineheight(heading);
+  font-weight: setting.fontweight(b);
+  font-size: clamp(setting.fontsize(l), calc((100vw - 768px) * 999), setting.fontsize(xl));
+}
+.p-home-hero-txt {
+  max-width: 40rem;
+  line-height: setting.lineheight(body);
+  font-weight: setting.fontweight(m);
+  font-size: setting.fontsize(m);
+  margin-top: clamp(setting.spaces(m), calc((100vw - 768px) * 999), setting.spaces(l));
+}
+
+.p-home-aboutus {
+  padding-top: clamp(setting.spaces(xl), calc((100vw - 768px) * 999), setting.spaces(3xl));
+  padding-bottom: clamp(setting.spaces(xl), calc((100vw - 768px) * 999), setting.spaces(3xl));
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: rgba(setting.lightcolor(txt), 0.7);
+  }
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+  }
+}
+.o-frame\:aboutus {
+  min-height: 100%;
+}
+.home-aboutus-lead {
+  color: setting.lightcolor(bg);
+  max-width: 40rem;
+  line-height: setting.lineheight(body);
+  font-weight: setting.fontweight(b);
+  font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(xl));
+  margin-bottom: setting.spaces(l);
+}
+.c-btn\:p-home-to-aboutus {
+  background: transparent;
+  border: solid 1px;
+  width: 100%;
+  max-width: 320px;
+  padding: clamp(setting.spaces(base), calc((100vw - 768px) * 999), setting.spaces(m));
+  &:hover,
+  &:focus {
+    color: setting.lightcolor(dimmed);
+    background: setting.lightcolor(bg);
+  }
+}
+.p-home-examples {
+  margin-top: clamp(setting.spaces(xl), calc((100vw - 768px) * 999), setting.spaces(3xl));
+  margin-bottom: clamp(setting.spaces(xl), calc((100vw - 768px) * 999), setting.spaces(3xl));
+}
+.o-stack\:examples {
+  margin-top: setting.spaces(m);
+  & > * + * {
+    margin-top: setting.spaces(m);
+  }
+}
+.p-examples-name {
+  color: setting.brandcolor(base);
+  font-weight: setting.fontweight(m);
+  font-size: setting.fontsize(m);
+}
+.p-examples-title {
+  line-height: setting.lineheight(heading);
+  font-weight: setting.fontweight(b);
+  font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(l));
+}
+.p-exapmles-cat {
+  color: var(--c-dimmed);
+  font-weight: setting.fontweight(m);
+  position: relative;
+  z-index: 3;
+  &:hover,
+  &:focus {
+    color: setting.brandcolor(base);
+  }
+}
+.p-home-services {
+  margin-top: clamp(setting.spaces(xl), calc((100vw - 768px) * 999), setting.spaces(3xl));
+  margin-bottom: clamp(setting.spaces(xl), calc((100vw - 768px) * 999), setting.spaces(3xl));
+}
+.p-home-main-service {
+  margin-top: setting.spaces(m);
+  margin-bottom: clamp(setting.spaces(xl), calc((100vw - 768px) * 999), setting.spaces(3xl));
+  margin-left: auto;
+  margin-right: auto;
+  max-width: setting.itemsize(content);
+}
+.o-has-icon\:p-home-main-service {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: setting.spaces(2xs);
+  margin-bottom: clamp(setting.spaces(base), calc((100vw - 768px) * 999), setting.spaces(l));
+}
+.p-home-main-service-icon {
+  font-size: clamp(38px, calc((100vw - 768px) * 999), 80px);
+  line-height: 1;
+}
+.p-home-main-service-label {
+  font-family: setting.$font-family-en;
+  font-weight: setting.fontweight(b);
+  font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(xl));
+}
+.p-home-main-service-lead,
+.p-home-main-service-txt {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: max-content;
+}
+.p-home-main-service-lead {
+  color: setting.brandcolor(base);
+  font-weight: setting.fontweight(b);
+  font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(l));
+  margin-bottom: setting.spaces(base);
+}
+.p-home-main-service-txt {
+  font-size: setting.fontsize(m);
+  font-weight: setting.fontweight(m);
+  margin-bottom: setting.spaces(m);
+}
+.p-home-service-notice {
+  color: var(--c-dimmed);
+  font-size: setting.fontsize(xs);
+  font-weight: setting.fontweight(m);
+  position: relative;
+  padding-left: setting.spaces(base);
+
+  &::before {
+    position: absolute;
+    left: 0;
+    content: "※";
+  }
+}
+.o-switcher\:p-home-service-media {
+  gap: setting.spaces(m);
+  margin-bottom: clamp(setting.spaces(m), calc((100vw - 768px) * 999), setting.spaces(xl));
+}
+.p-home-service-media-pict,
+.p-home-service-media-txt {
+  width: 100%;
+  max-width: calc(50% - (setting.spaces(m) / 2));
+}
+.p-home-service-other-heading {
+  font-weight: setting.fontweight(b);
+  font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(l));
+  margin-bottom: clamp(setting.spaces(base), calc((100vw - 768px) * 999), setting.spaces(m));
+}
+.p-home-service-other-lead {
+  color: setting.brandcolor(base);
+  font-weight: setting.fontweight(b);
+  font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(l));
+}
+.p-home-service-other-txt {
+  font-size: setting.fontsize(m);
+  font-weight: setting.fontweight(m);
+}
 .p-home-news {
   padding-top: clamp(setting.spaces(xl), calc((100vw - 768px) * 999), setting.spaces(3xl));
   padding-bottom: clamp(setting.spaces(xl), calc((100vw - 768px) * 999), setting.spaces(3xl));
@@ -25,6 +230,15 @@
   &__small {
     font-size: clamp(setting.fontsize(s), calc((100vw - 768px) * 999), setting.fontsize(m));
   }
+  &\:color-white {
+    color: setting.lightcolor(bg);
+  }
+}
+.p-home-lead {
+  font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(xl));
+  margin-bottom: clamp(setting.spaces(l), calc((100vw - 768px) * 999), setting.spaces(2xl));
+  font-weight: setting.fontweight(b);
+  line-height: setting.lineheight(heading);
 }
 .o-stack\:p-home-news {
   max-width: setting.itemsize(content);
@@ -70,7 +284,8 @@
   &:hover + .o-frame,
   &:focus + .o-frame {
     opacity: setting.animes(opacity);
-    & + .o-grid\:p-home-stories .p-home-stories-title {
+    & + .o-grid\:p-home-stories .p-home-stories-title,
+    & + .o-stack\:examples .p-examples-title {
       color: setting.brandcolor(base);
     }
   }

@@ -3,15 +3,7 @@
 
 .c-logo {
   line-height: 1;
-
-  &\:header {
-    font-size: 40px;
-  }
-
-  &\:footerLogo {
-    font-size: 70px;
-    display: table;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  font-size: 40px;
+  padding-top: setting.spaces(2xs);
+  padding-bottom: setting.spaces(2xs);
 }

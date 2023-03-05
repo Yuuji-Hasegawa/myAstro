@@ -92,7 +92,6 @@
   }
   */
 }
-/*
 .c-menu-btn {
   display: flex;
   align-items: center;
@@ -131,8 +130,7 @@
     &::after {
       bottom: -11px;
     }
-
-    .c-menu-btn\:is-open & {
+    #spNav[open] & {
       background: transparent;
 
       &::before {
@@ -146,89 +144,26 @@
       }
     }
   }
-
-  @include tool.min-screen(768px) {
-    display: none;
+  &--sidebar {
+    margin-left: auto;
   }
 }
-
-.c-sidebar-btn {
-  position: fixed;
-  right: clamp(setting.spaces(2xs), calc(3.5vw - setting.spaces(base)), setting.spaces(base));
-  bottom: setting.spaces(base);
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  font-size: 32px;
-  color: setting.lightcolor(bg);
-  cursor: pointer;
-  background: rgba(setting.brandcolor(dark),0.7);
-  border-radius: 50%;
-  box-shadow: 0 0 2px setting.brandcolor(dark);
-  transition: all setting.animes(duration) setting.animes(timing);
-
-  &:focus,
-  &:hover {
-    color: setting.lightcolor(dimmed);
-    background: rgba(setting.lightcolor(bg),0.7);
-  }
-
-  &\:is-open {
-    right: calc(clamp(setting.spaces(2xs), calc(3.5vw - setting.spaces(base)), setting.spaces(base)) + 240px);
-  }
-}
-
 .c-sidebar {
   position: fixed;
   top: 0;
-  right: -240px;
+  right: -100vw;
   z-index: 1000;
-  width: 100%;
-  max-width: 240px;
+  width: 100vw;
   height: 100vh;
   pointer-events: none;
-  background: setting.brandcolor(dark);
-  box-shadow: 0 0 2px setting.lightcolor(overlay);
+  background: setting.brandcolor(base);
   transition: right setting.animes(duration) setting.animes(timing);
-
-  &\:is-open {
+  overflow-y: scroll;
+  overscroll-behavior-y: none;
+  padding: 4px setting.spaces(base) setting.spaces(xl);
+  #spNav[open] & {
     right: 0;
     pointer-events: auto;
     transition: right setting.animes(duration) setting.animes(timing);
   }
 }
-
-.c-sidebar-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 998;
-  display: none;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  visibility: hidden;
-  background: setting.brandcolor(light);
-  opacity: 0;
-  transition: opacity setting.animes(duration) setting.animes(timing);
-
-  .c-sidebar\:is-open + & {
-    display: block;
-    pointer-events: auto;
-    cursor: pointer;
-    visibility: visible;
-    opacity: setting.animes(opacity);
-    transition: opacity setting.animes(duration) setting.animes(timing);
-  }
-}
-
-body.is-fixed {
-  position: fixed;
-  min-width: 100vw;
-  min-height: 100vh;
-  overflow: hidden;
-}
-*/

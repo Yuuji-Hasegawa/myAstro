@@ -5,6 +5,11 @@
   flex-direction: column;
   justify-content: flex-start;
 
+  &\:sp-nav {
+    margin-bottom: setting.spaces(m);
+    border-bottom: solid 1px setting.lightcolor(bg);
+  }
+
   /*
   &\:xxs {
     & > * + * {

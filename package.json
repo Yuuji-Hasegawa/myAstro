@@ -10,7 +10,7 @@
     "astro": "astro",
     "lint": "run-p lint:*",
     "lint:js": "eslint \"./src/**/*.{js,jsx,astro}\"",
-    "lint:style": "stylelint \"./src/**/*.{css,scss,astro}\"",
+    "lint:style": "stylelint \"./src/**/*.{css,scss}\"",
     "lint:prettier": "prettier --check src",
     "fix": "run-p fix:*",
     "fix:js": "npm run lint:js -- --fix",
