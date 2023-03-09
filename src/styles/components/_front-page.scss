@@ -1,0 +1,159 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+.c-btn {
+  &\:ghost {
+    margin-left: 0;
+    background: transparent;
+    border-color: setting.lightcolor(bg);
+    color: setting.lightcolor(bg);
+    &:hover,
+    &:focus {
+      color: setting.lightcolor(dimmed);
+      background: setting.lightcolor(bg);
+    }
+  }
+  &\:wide {
+    max-width: 560px;
+    background: var(--c-txt);
+    color: var(--c-bg);
+    &:hover,
+    &:focus {
+      background: var(--c-bg);
+      color: var(--c-txt);
+    }
+  }
+}
+.p-front-heading {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  line-height: 1;
+  gap: clamp(setting.spaces(base), calc((100vw - 768px) * 999), setting.spaces(m));
+  font-weight: setting.fontweight(b);
+  margin-bottom: clamp(setting.spaces(l), calc((100vw - 768px) * 999), setting.spaces(xl));
+  &__en {
+    font-size: clamp(setting.fontsize(l), calc((100vw - 768px) * 999), setting.fontsize(2xl));
+    font-family: setting.$font-family-en;
+  }
+  &__small {
+    font-size: clamp(setting.fontsize(s), calc((100vw - 768px) * 999), setting.fontsize(m));
+  }
+  &\:color-white {
+    color: setting.lightcolor(bg);
+  }
+}
+.p-front-news {
+  background: var(--c-overlay);
+}
+.p-front-press {
+  max-width: setting.itemsize(content);
+  &\:about-us {
+    margin-bottom: setting.spaces(l);
+  }
+  &\:service-body,
+  &\:news {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  &\:service-body {
+    margin-top: setting.spaces(m);
+    margin-bottom: clamp(setting.spaces(xl), calc((100vw - 768px) * 999), setting.spaces(3xl));
+  }
+  &\:news {
+    margin-bottom: clamp(setting.spaces(l), calc((100vw - 768px) * 999), setting.spaces(xl));
+  }
+}
+.p-front-lead {
+  line-height: setting.lineheight(heading);
+  font-weight: setting.fontweight(b);
+  &\:catch-copy {
+    font-family: setting.$font-family-en;
+    font-size: clamp(setting.fontsize(l), calc((100vw - 768px) * 999), setting.fontsize(2xl));
+    margin-bottom: clamp(setting.spaces(l), calc((100vw - 768px) * 999), setting.spaces(xl));
+  }
+  &\:hero {
+    font-size: clamp(setting.fontsize(l), calc((100vw - 768px) * 999), setting.fontsize(xl));
+  }
+  &\:service-primary {
+    font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(xl));
+    margin-bottom: clamp(setting.spaces(l), calc((100vw - 768px) * 999), setting.spaces(2xl));
+  }
+  &\:service-min-first,
+  &\:service-min-second,
+  &\:service-min-third {
+    font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(l));
+  }
+  &\:service-min-first {
+    margin-bottom: setting.spaces(base);
+  }
+  &\:service-min-first,
+  &\:service-min-third {
+    color: setting.brandcolor(base);
+  }
+  &\:service-min-second {
+    margin-bottom: clamp(setting.spaces(base), calc((100vw - 768px) * 999), setting.spaces(m));
+  }
+}
+.p-front-txt {
+  font-size: setting.fontsize(m);
+  line-height: setting.lineheight(body);
+  font-weight: setting.fontweight(m);
+  &\:hero {
+    margin-top: clamp(setting.spaces(m), calc((100vw - 768px) * 999), setting.spaces(l));
+  }
+  &\:about-us {
+    color: setting.lightcolor(bg);
+    font-weight: setting.fontweight(b);
+    font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(xl));
+  }
+  &\:service-primary {
+    margin-bottom: setting.spaces(m);
+  }
+}
+.p-front-lead\:service-min-first,
+.p-front-txt\:service-primary {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: max-content;
+}
+.o-switcher\:p-front-posts {
+  margin-bottom: clamp(setting.spaces(l), calc((100vw - 768px) * 999), setting.spaces(xl));
+  gap: setting.spaces(m);
+}
+.o-has-icon\:p-front-service {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: setting.spaces(2xs);
+  margin-bottom: clamp(setting.spaces(base), calc((100vw - 768px) * 999), setting.spaces(l));
+}
+.c-logo\:p-front-service {
+  font-size: clamp(38px, calc((100vw - 768px) * 999), 80px);
+}
+.p-front-service-name {
+  font-family: setting.$font-family-en;
+  font-weight: setting.fontweight(b);
+  font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(xl));
+}
+.o-switcher\:p-front-media {
+  gap: setting.spaces(m);
+  margin-bottom: clamp(setting.spaces(m), calc((100vw - 768px) * 999), setting.spaces(xl));
+}
+.p-front-media-pict,
+.p-front-media-txt {
+  width: 100%;
+  max-width: calc(50% - (setting.spaces(m) / 2));
+}
+.p-front-notice {
+  color: var(--c-dimmed);
+  font-size: setting.fontsize(xs);
+  font-weight: setting.fontweight(m);
+  position: relative;
+  padding-left: setting.spaces(base);
+
+  &::before {
+    position: absolute;
+    left: 0;
+    content: "※";
+  }
+}

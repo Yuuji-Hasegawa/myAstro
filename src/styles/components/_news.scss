@@ -1,0 +1,23 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+
+.o-stack\:c-news {
+  & > * + * {
+    margin-top: setting.spaces(m);
+  }
+}
+.o-switcher\:c-news {
+  gap: setting.spaces(xs);
+  font-family: setting.$font-family-en;
+  font-weight: setting.fontweight(b);
+}
+.c-news-title {
+  color: setting.brandcolor(base);
+  flex-basis: calc((540px - 100vw) * 999);
+  flex-grow: 1;
+  transition: all setting.animes(duration) setting.animes(timing);
+  &:hover,
+  &:focus {
+    opacity: setting.animes(opacity);
+  }
+}

@@ -1,0 +1,44 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+
+.c-examples-item {
+  width: clamp(calc(50% - (setting.spaces(m) / 2)), calc((429px - 100vw) * 999), 100%);
+  max-width: max(calc(768px - 100vw) * 999, calc((100% - setting.spaces(m) * 2) / 3));
+}
+.o-stack {
+  &\:examples {
+    & > * + * {
+      margin-top: setting.spaces(m);
+    }
+    & > .o-frame {
+      & > * {
+        transition: all setting.animes(duration) setting.animes(timing);
+      }
+      &:hover > * {
+        transform: scale(0.9);
+      }
+    }
+  }
+  &\:item-inner {
+    & > * + * {
+      margin-top: setting.spaces(base);
+    }
+  }
+}
+.c-examples-label {
+  font-size: setting.fontsize(xs);
+  &\:name {
+    color: setting.brandcolor(base);
+  }
+  &\:cat {
+    color: var(--c-dimmed);
+  }
+}
+.c-examples-title {
+  font-weight: setting.fontweight(b);
+  font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(l));
+  transition: all setting.animes(duration) setting.animes(timing);
+  .o-stack\:examples:hover & {
+    opacity: setting.animes(opacity);
+  }
+}

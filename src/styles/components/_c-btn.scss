@@ -2,51 +2,44 @@
 @use "../tools" as tool;
 
 .c-btn {
-  display: table;
-  padding: setting.spaces(xs) setting.spaces(s);
-  font-size: setting.fontsize(m);
-  font-weight: setting.fontweight(b);
-  color: setting.lightcolor(bg);
+  display: block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--c-txt);
+  background: var(--c-bg);
+  border: solid 1px var(--c-txt);
+  font-size: setting.fontsize(s);
+  padding: clamp(setting.spaces(base), calc((100vw - 768px) * 999), setting.spaces(m));
+  font-weight: setting.fontweight(m);
   cursor: pointer;
-  background: setting.brandcolor(base);
-  border: solid 1px transparent;
+  max-width: 370px;
+  transition: all setting.animes(duration) setting.animes(timing);
 
   &:hover,
   &:focus {
-    color: setting.brandcolor(light);
-    background: setting.brandcolor(dark);
+    color: var(--c-bg);
+    background: var(--c-txt);
   }
 
   &:focus {
-    outline: 1px solid setting.brandcolor(light);
+    outline: 1px solid var(--c-txt);
     outline-offset: 1px;
   }
-
-  /*
-  &\:link,
-  &\:button {
-
-  }
-
-  &\:button {
-
-  }
-  */
-
+/*
   &:disabled {
     color: var(--c-dimmed);
     pointer-events: none;
     background: var(--c-overlay);
   }
+*/
 
-  &\:go-to-inquiry {
+  &\:accent {
     background: var(--c-accent);
-    width: 100%;
-    max-width: 370px;
-    padding: clamp(setting.spaces(base), calc((100vw - 768px) * 999), setting.spaces(m));
+    color: setting.lightcolor(bg);
+    border-color: var(--c-accent);
     &:hover,
     &:focus {
-      opacity: 1;
       background: setting.lightcolor(bg);
       color: var(--c-accent);
     }
@@ -56,25 +49,6 @@
   }
 
   /*
-
-  &\:search {
-    position: absolute;
-    right: 0;
-    color: inherit;
-    background: transparent;
-
-    &:hover,
-    &:focus {
-      color: inherit;
-      background: transparent;
-    }
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  */
 
   &\:ghost {
     background: transparent;
@@ -87,83 +61,5 @@
     }
   }
 
-  /*
-  &\:pager {
-  }
   */
-}
-.c-menu-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  padding: 13px 10px;
-  cursor: pointer;
-
-  &:focus {
-    outline: 1px solid setting.brandcolor(light);
-  }
-
-  &__inner {
-    position: relative;
-    width: 100%;
-    height: 2px;
-    background: var(--c-txt);
-    transition: all ease-out 0.3s;
-
-    &::before,
-    &::after {
-      position: absolute;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      content: "";
-      background-color: var(--c-txt);
-      transition: all ease-out 0.3s;
-    }
-
-    &::before {
-      top: -11px;
-    }
-
-    &::after {
-      bottom: -11px;
-    }
-    #spNav[open] & {
-      background: transparent;
-
-      &::before {
-        top: 0;
-        transform: rotate(-45deg);
-      }
-
-      &::after {
-        bottom: 0;
-        transform: rotate(45deg);
-      }
-    }
-  }
-  &--sidebar {
-    margin-left: auto;
-  }
-}
-.c-sidebar {
-  position: fixed;
-  top: 0;
-  right: -100vw;
-  z-index: 1000;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  background: setting.brandcolor(base);
-  transition: right setting.animes(duration) setting.animes(timing);
-  overflow-y: scroll;
-  overscroll-behavior-y: none;
-  padding: 4px setting.spaces(base) setting.spaces(xl);
-  #spNav[open] & {
-    right: 0;
-    pointer-events: auto;
-    transition: right setting.animes(duration) setting.animes(timing);
-  }
 }

@@ -5,9 +5,18 @@
   flex-direction: column;
   justify-content: flex-start;
 
-  &\:sp-nav {
-    margin-bottom: setting.spaces(m);
-    border-bottom: solid 1px setting.lightcolor(bg);
+  &\:sp-follow,
+  &\:follow-us {
+    & > * + * {
+      margin-top: clamp(setting.spaces(xs), calc((768px - 100vw) * 999), setting.spaces(base));
+    }
+  }
+  &\:sp-follow {
+    align-items: center;
+    margin-top: setting.spaces(m);
+  }
+  &\:follow-us {
+    margin-top: clamp(0px, calc((100vw - 768px) * 999), setting.spaces(s));
   }
 
   /*

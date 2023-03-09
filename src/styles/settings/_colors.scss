@@ -29,7 +29,7 @@ $light-colors: (
   dimmed: hsla($grayH, $grayS, $grayPaleL, 50%),
   border: hsla($grayH, $grayS, $grayPaleL, 10%),
   separator: hsla($grayH, $grayS, $grayDarkL),
-  btnBg: hsla($grayH, $grayS, $grayDarkL),
+  //btnBg: hsla($grayH, $grayS, $grayDarkL),
   accent: #c82e2e,
 );
 
@@ -45,7 +45,7 @@ $dark-colors: (
   dimmed: hsla($grayH, $grayS, $grayBase, 50%),
   border: hsla($grayH, $grayS, $grayBase, 10%),
   separator: hsla($grayH, $grayS, $grayL),
-  btnBg: hsla($grayH, $grayS, $grayL),
+  //btnBg: hsla($grayH, $grayS, $grayL),
   accent: #ff5a5a,
 );
 

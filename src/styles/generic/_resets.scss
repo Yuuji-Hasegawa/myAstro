@@ -1,3 +1,4 @@
+@use "../settings/font-face";
 @use "../settings" as setting;
 @use "../tools" as tool;
 
@@ -71,12 +72,13 @@ a {
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+/*
   transition: all setting.animes(duration) setting.animes(timing);
-
   &:hover,
   &:focus {
     opacity: setting.animes(opacity);
   }
+*/
 }
 
 svg {

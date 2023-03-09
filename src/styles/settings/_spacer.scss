@@ -1,7 +1,7 @@
 @use "sass:math";
 @use "sass:map";
 
-$base: 24px; /* 16 * 1.5rem */
+$base: 24px;
 $ratio: 1.618;
 
 @function spaces($key) {

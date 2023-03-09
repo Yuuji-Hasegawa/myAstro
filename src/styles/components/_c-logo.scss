@@ -1,9 +1,0 @@
-@use "../settings" as setting;
-@use "../tools" as tool;
-
-.c-logo {
-  line-height: 1;
-  font-size: 40px;
-  padding-top: setting.spaces(2xs);
-  padding-bottom: setting.spaces(2xs);
-}

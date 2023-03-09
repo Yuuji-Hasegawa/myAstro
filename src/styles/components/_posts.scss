@@ -1,0 +1,62 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+.c-posts-item {
+  width: clamp(calc(50% - (setting.spaces(m) / 2)), calc((429px - 100vw) * 999), 100%);
+  max-width: max(calc(768px - 100vw) * 999, calc((100% - setting.spaces(m) * 2) / 3));
+}
+.o-cover {
+  &__overlay\:posts {
+    z-index: 1;
+  }
+}
+.o-stack {
+  &\:posts {
+    & > * + * {
+      margin-top: setting.spaces(base);
+    }
+    & > .o-frame {
+      & > * {
+        transition: all setting.animes(duration) setting.animes(timing);
+      }
+      &:hover > * {
+        transform: scale(0.9);
+      }
+    }
+  }
+  &\:posts-bottom {
+    & > * + * {
+      margin-top: setting.spaces(xs);
+    }
+  }
+}
+.o-grid\:posts {
+  gap: setting.spaces(base);
+  grid-template-columns: 45px 1fr;
+  align-items: flex-start;
+  & > .o-frame\:square > * {
+    border-radius: 50%;
+  }
+}
+.c-posts-trim {
+  overflow: hidden;
+  line-height: setting.lineheight(heading);
+  &\:title {
+    font-size: clamp(setting.fontsize(s), calc((100vw - 650px) * 999), setting.fontsize(m));
+    font-weight: setting.fontweight(b);
+    max-height: calc(setting.fontsize(m) * setting.lineheight(heading) * 2);
+  }
+  &\:author {
+    max-height: calc(setting.fontsize(xs) * setting.lineheight(heading) * 1);
+  }
+}
+.c-posts-trim\:author,
+.o-cluster\:posts-bottom {
+  color: var(--c-dimmed);
+  font-size: setting.fontsize(xs);
+}
+.o-cluster\:posts-bottom {
+  gap: setting.spaces(2xs);
+}
+.c-posts-date {
+  font-family: setting.$font-family-en;
+}
