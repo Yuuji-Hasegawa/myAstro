@@ -1,0 +1,64 @@
+---
+import setting from "../data/setting.json"
+const { pageTitle, pageImg, pageDesc, pageKeywords } = Astro.props
+const pagePath = Astro.url.pathname
+const siteTitle = setting.site.title ? setting.site.title : "サンプルサイト"
+const title = pagePath == "/" ? setting.site.title : `${pageTitle} | ${siteTitle}`
+let ogpType = ""
+if (pagePath == "/") {
+  ogpType = "website"
+} else {
+  ogpType = "article"
+}
+const ogpTitle = pageTitle ? pageTitle : siteTitle
+const baseUrl = setting.site.url
+const url = new URL(Astro.url.pathname, baseUrl)
+const robots = "noindex, nofollow"
+const description = pageDesc ? pageDesc : setting.site.desc
+const keywords = pageKeywords ? pageKeywords + "," + setting.site.keywords.join(",") : setting.site.keywords.join(",")
+const ogpLang = setting.site.locale
+const twCreator = setting.sns.twC
+const twSite = setting.sns.twS
+const imgurl = pageImg ? `${baseUrl}/${pageImg}` : `${baseUrl}/img/ogp.png`
+const themeColor = setting.site.themeColor ? setting.site.themeColor : "#ffffff"
+const shortName = setting.site.shortName ? setting.site.shortName : `${siteTitle}`
+const manifestJson = `${baseUrl}/manifest.json`
+const pwaIcon = `${baseUrl}/icons/icon-512x512.png`
+---
+
+<meta charset="utf-8" />
+<title>{title}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta content="telephone=no" name="format-detection" />
+<meta content="address=no" name="format-detection" />
+<link rel="canonical" href={url} />
+<meta name="robots" content={robots} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta property="og:site_name" content={siteTitle} />
+<meta property="og:title" content={ogpTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:type" content={ogpType} />
+<meta property="og:locale" content={ogpLang} />
+<meta property="og:image" content={imgurl} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:title" content={ogpTitle} />
+<meta name="twitter:creator" content={twCreator} />
+<meta name="twitter:site" content={twSite} />
+<meta name="twitter:image" content={imgurl} />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+<link rel="apple-touch-icon" href="/icons/icon-180x180.png" />
+<link rel="preload" href="/fonts/Futura PT_Medium.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/Roboto-Regular.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/Roboto-Medium.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/Roboto-Bold.woff2" as="font" type="font/woff2" crossorigin />
+<meta name="theme-color" content={themeColor} />
+<link rel="manifest" href={manifestJson} />
+<meta name="apple-mobile-web-app-title" content={shortName} />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<link rel="apple-touch-icon-precomposed" href={pwaIcon} />
+<meta name="generator" content={Astro.generator} />

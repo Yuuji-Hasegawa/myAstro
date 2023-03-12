@@ -1,0 +1,56 @@
+{
+  "site": {
+    "title": "サイト名",
+    "lang": "ja",
+    "locale": "ja_JP",
+    "url": "https://www.examples.com",
+    "keywords": ["キーワード1", "キーワード2", "キーワード3", "キーワード4", "キーワード5"],
+    "desc": "サイト説明文",
+    "copyright": "©︎ examples.com",
+    "themeColor": "#2c6c60",
+    "shortName": "サイト名 ショート"
+  },
+  "sns": {
+    "fb": "https://www.facebook.com/",
+    "tw": "https://twitter.com/",
+    "instagram": "https://www.instagram.com/",
+    "youtube": "https://www.youtube.com",
+    "twC": "@kamenwriter01",
+    "twS": "@kamenwriter02"
+  },
+  "author": {
+    "name": "サンプル 太郎",
+    "desc": "サンプル太郎の自己紹介。サンプルを表示しています",
+    "fb": "https://www.facebook.com/",
+    "tw": "https://twitter.com/bluebnose",
+    "instagram": "https://www.instagram.com/",
+    "url": "https://examples.com"
+  },
+  "company": {
+    "name": "",
+    "owner": "",
+    "zip": "",
+    "address": "",
+    "mail": {
+      "primary": "info@examples.com",
+      "sendonly": "noreply@examples.com"
+    },
+    "tel": "000-0000-0000",
+    "fax": "000-0000-0000",
+    "birth": "2022年00月00日",
+    "capital": "xxx万円",
+    "open": "09:00",
+    "close": "19:00",
+    "dayoff": "土日・祝祭日",
+    "service": ["事業項目1", "事業項目2", "事業項目3", "事業項目4", "事業項目5", "事業項目6"]
+  },
+  "terms": {
+    "domain": "examples.com",
+    "name": "BBN",
+    "acount": "サンプル太郎",
+    "nouse": "6ヶ月以上",
+    "noreply": "30日間以上",
+    "payterm": "12ヶ月間",
+    "court": "大阪地方裁判所"
+  }
+}

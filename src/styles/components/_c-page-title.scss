@@ -1,0 +1,15 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+.c-page-title {
+  display: flex;
+  flex-direction: column;
+  color: setting.lightcolor(bg);
+  font-size: clamp(setting.fontsize(l), calc((100vw - 768px) * 999), setting.fontsize(xl));
+  font-weight: setting.fontweight(b);
+  line-height: setting.lineheight(heading);
+  gap: clamp(setting.spaces(s), calc((100vw - 768px) * 999), setting.spaces(base));
+  &__font-small {
+    font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(l));
+    font-family: setting.$font-family-en;
+  }
+}

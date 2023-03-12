@@ -1,0 +1,68 @@
+---
+import BreadCrumb from "../components/BreadCrumb.astro"
+import CommonCta from "../components/CommonCta.astro"
+import Footer from "../components/Footer.astro"
+import Header from "../components/Header.astro"
+import Meta from "../components/meta.astro"
+import PageTitle from "../components/PageTitle.astro"
+import setting from "../data/setting.json"
+
+import "../styles/style.scss"
+const { pageTitle, pageSubTitle, pageImg, pageDesc, pageKeywords } = Astro.props
+const pagePath = Astro.url.pathname
+let ogpType = ""
+if (pagePath.match("/")) {
+  ogpType = "website"
+} else {
+  ogpType = "article"
+}
+const lang = setting.site.lang ? setting.site.lang : "ja"
+const h_prefix = `og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# ${ogpType}: http://ogp.me/ns/${ogpType}#`
+---
+
+<html lang={lang}>
+  <head prefix={h_prefix}>
+    <!-- Google Tag Manager -->
+    <script type="text/partytown">
+      ;(function (w, d, s, l, i) {
+        w[l] = w[l] || []
+        w[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js",
+        })
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : ""
+        j.defer = true
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl
+        f.parentNode.insertBefore(j, f)
+      })(window, document, "script", "dataLayer", "GTM-XXXXXXX")
+    </script>
+    <!-- End Google Tag Manager -->
+    <Meta pageTitle={pageTitle} pageImg={pageImg} pageDesc={pageDesc} pageKeywords={pageKeywords} />
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <Header />
+    <main>
+      {pagePath !== "/" && <PageTitle pageTitle={pageTitle} pageSubTitle={pageSubTitle} pageImg={pageImg} />}
+      <slot />
+      {pagePath !== "/" && <BreadCrumb pageTitle={pageTitle} />}
+      {pagePath !== "/inquiry" && <CommonCta />}
+      {pagePath === "/inquiry" && <slot name="mailForm" />}
+    </main>
+    <Footer />
+    <script>
+      import "../scripts/app.js"
+    </script>
+    <script type="application/ld+json"></script>
+  </body>
+</html>

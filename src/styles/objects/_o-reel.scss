@@ -4,6 +4,7 @@
   display: flex;
   padding-bottom: setting.spaces(xs);
   overflow-x: auto;
+  overflow-y: hidden;
 
   > * {
     flex-shrink: 0;

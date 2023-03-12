@@ -1,0 +1,23 @@
+---
+import BtmNav from "../components/BtmNav.astro"
+import FollowSns from "../components/FollowSns.astro"
+import FtNav from "../components/FtNav.astro"
+import setting from "../data/setting.json"
+const copyright = setting.site.copyright ? setting.site.copyright : "@ examples.com"
+---
+
+<footer class="c-footer">
+  <div class="o-container o-container:wrapper">
+    <div class="o-switcher o-switcher:footer">
+      <div class="c-footer-navs">
+        <FtNav />
+        <BtmNav />
+      </div>
+      <div class="o-stack o-stack:follow-us">
+        <p class="c-follow-heading">FOLLOW US</p>
+        <FollowSns />
+      </div>
+    </div>
+    <p class="c-small-note c-small-note:copyright">{copyright}</p>
+  </div>
+</footer>

@@ -112,6 +112,11 @@
   display: block;
   padding-left: 0;
   padding-right: 0;
+  transition: all setting.animes(duration) setting.animes(timing);
+  &:hover,
+  &:focus {
+    opacity: setting.animes(opacity);
+  }
   &\:pc-nav,
   &\:btm-nav {
     padding-top: setting.spaces(xs);
@@ -206,6 +211,11 @@
 .c-follow-link {
   line-height: 1;
   font-size: clamp(setting.fontsize(m), calc((768px - 100vw) * 999), setting.fontsize(l));
+  transition: all setting.animes(duration) setting.animes(timing);
+  &:hover,
+  &:focus {
+    opacity: setting.animes(opacity);
+  }
 }
 .c-small-note {
   font-size: setting.fontsize(xs);

@@ -142,7 +142,7 @@
 .p-front-media-pict,
 .p-front-media-txt {
   width: 100%;
-  max-width: calc(50% - (setting.spaces(m) / 2));
+  max-width: max(calc(768px - 100vw) * 999, calc(50% - (setting.spaces(m) / 2)));
 }
 .p-front-notice {
   color: var(--c-dimmed);

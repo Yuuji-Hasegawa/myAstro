@@ -1,734 +1,524 @@
 ---
-import "../styles/style.scss"
+import BaseLayout from "../layouts/BaseLayout.astro"
+
 import "../styles/components/_front-page.scss"
 import "../styles/components/_news.scss"
 import "../styles/components/_posts.scss"
 import "../styles/components/_examples.scss"
-const pageTitle = ""
-const siteTitle = "Sample Site"
-const title = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle
-const pageType = ""
-const ogpType = pageType ? pageType : "website"
-const h_prefix = `og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# ${ogpType}: http://ogp.me/ns/${ogpType}#`
-const baseUrl = "https://examples.com"
-const url = new URL(Astro.url.pathname, baseUrl)
-const robots = "noindex, nofollow"
-const pageDesc = ""
-const siteDesc = "site Description"
-const description = pageDesc ? pageDesc : siteDesc
-const pageKeywd = ""
-const siteKeywd = [`word1`, `word2`, `word3`, `word4`, `word15`]
-const keywords = pageKeywd ? pageKeywd + "," + siteKeywd.join(",") : siteKeywd.join(",")
-const ogpLang = "ja_JP"
-const twCreator = "@kamenwriter01"
-const twSite = "@kamenwriter02"
-const pageImg = ""
-const imgurl = pageImg ? `${url}${pageImg}` : `${url}images/ogp.png`
-const jsonLd = ""
-const pageImgw = ""
-const pageImgh = ""
-const imgw = pageImgw ? pageImgw : 1200
-const imgh = pageImgh ? pageImgh : 630
-const themeColor = ""
-const manifestJson = `${baseUrl}/manifest.json`
-const pwaIcon = `${baseUrl}/icons/icon-512x512.png`
 ---
 
-<html lang="ja">
-  <head prefix={h_prefix}>
-    <!-- Google Tag Manager -->
-    <script type="text/partytown">
-      ;(function (w, d, s, l, i) {
-        w[l] = w[l] || []
-        w[l].push({
-          "gtm.start": new Date().getTime(),
-          event: "gtm.js",
-        })
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : ""
-        j.defer = true
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl
-        f.parentNode.insertBefore(j, f)
-      })(window, document, "script", "dataLayer", "GTM-XXXXXXX")
-    </script>
-    <!-- End Google Tag Manager -->
-    <meta charset="utf-8" />
-    <title>{title}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta content="telephone=no" name="format-detection" />
-    <meta content="address=no" name="format-detection" />
-    <link rel="canonical" href={url} />
-    <meta name="robots" content={robots} />
-    <meta name="description" content={description} />
-    <meta name="keywords" content={keywords} />
-    <meta property="og:site_name" content={siteTitle} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={url} />
-    <meta property="og:type" content={ogpType} />
-    <meta property="og:locale" content={ogpLang} />
-    <meta property="og:image" content={imgurl} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:creator" content={twCreator} />
-    <meta name="twitter:site" content={twSite} />
-    <meta name="twitter:image" content={imgurl} />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
-    <link rel="apple-touch-icon" href="/icons/icon-180x180.png" />
-    <link rel="preload" href="/fonts/Futura PT_Medium.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/Roboto-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/Roboto-Medium.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/Roboto-Bold.woff2" as="font" type="font/woff2" crossorigin />
-    <meta name="theme-color" content={themeColor} />
-    <link rel="manifest" href={manifestJson} />
-    <meta name="apple-mobile-web-app-title" content={siteTitle} />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <link rel="apple-touch-icon-precomposed" href={pwaIcon} />
-    <meta name="generator" content={Astro.generator} />
-  </head>
-  <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"></iframe></noscript
-    >
-    <!-- End Google Tag Manager (noscript) -->
-    <header class="o-container o-container:header">
-      <a class="c-logo c-logo:header" href="#" aria-label="Go to Home">
-        <svg width="25" height="32" viewBox="0 0 25 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <style>
-            @media (prefers-color-scheme: dark) {
-              path:nth-of-type(2) {
-                fill: #ff5a5a;
-              }
-            }
-          </style>
-          <path
-            d="M19.193 1.768c-1.924.781-3.828 1.563-5.664 2.463A33.245 33.245 0 0 0 8.3 7.337a17.223 17.223 0 0 0-4.178 4.275 12.85 12.85 0 0 0-1.354 2.686 13.582 13.582 0 0 0-.602 2.216c-.048.254-.087.509-.126.766a10.066 10.066 0 0 1-.007-1.566c.037-.526.114-1.049.23-1.563.237-1.04.62-2.04 1.14-2.972a13.362 13.362 0 0 1 1.883-2.58c.361-.393.745-.762 1.141-1.117s.812-.685 1.236-1.002a24.434 24.434 0 0 1 5.525-3.014 30.714 30.714 0 0 1 6.004-1.698Z"
-            fill="#2C6C60"></path>
-          <path d="M4.481 15.982c-4.596 5.566 7.02 15.982 8.958 8.476 1.21-5.088-4.358-12.84-9.44-8.236" fill="#C82E2E"
-          ></path>
-          <path
-            d="M1.8 23.17c-.043.317-.103.629-.161.94l-.18.926a41.212 41.212 0 0 0-.322 1.831 10.78 10.78 0 0 0-.13 1.784c.005.274.04.548.102.815.03.12.069.236.119.349l.038.08.02.037.028.048a1.796 1.796 0 0 0 .631.63c.226.137.47.24.726.304a6.325 6.325 0 0 0 1.726.178 16.97 16.97 0 0 0 1.831-.144c.309-.038.619-.08.93-.127.31-.047.623-.095.94-.138a9.842 9.842 0 0 1-.858.423c-.294.128-.59.242-.892.352-.61.216-1.241.373-1.882.469a8.815 8.815 0 0 1-.493.054 6.087 6.087 0 0 1-.502.019 4.992 4.992 0 0 1-1.029-.1 3.538 3.538 0 0 1-1.025-.382A2.823 2.823 0 0 1 .4 30.506l-.034-.06-.036-.067a2.851 2.851 0 0 1-.24-.68 4.43 4.43 0 0 1-.087-1.054c.012-.334.047-.668.106-.998.055-.322.13-.645.214-.954.353-1.228.849-2.41 1.477-3.523Zm6.553-11.175c.248-.243.518-.462.806-.656.29-.194.596-.366.912-.515a8.793 8.793 0 0 1 1.998-.654 12.382 12.382 0 0 1 4.212-.087c.702.102 1.395.259 2.072.47.683.21 1.345.48 1.98.807.644.33 1.25.729 1.808 1.189a7.792 7.792 0 0 1 1.483 1.627c.206.31.386.639.537.98a5.81 5.81 0 0 1 .422 3.307 7.24 7.24 0 0 1-.685 2.088 9.157 9.157 0 0 1-.54.938c-.198.298-.41.587-.637.864a12.835 12.835 0 0 1-3.188 2.755 12.49 12.49 0 0 1-1.864.946c-.323.13-.651.242-.983.345-.332.097-.67.174-1.01.231a13.07 13.07 0 0 0 3.563-1.954 13.78 13.78 0 0 0 2.822-2.835 10.012 10.012 0 0 0 .991-1.692 6.625 6.625 0 0 0 .534-1.832 5.017 5.017 0 0 0-.39-2.732 5.528 5.528 0 0 0-.456-.822 6.846 6.846 0 0 0-1.274-1.415 9.552 9.552 0 0 0-1.605-1.103 13.664 13.664 0 0 0-7.708-1.567c-.67.068-1.33.206-1.97.412a7.138 7.138 0 0 0-.94.381c-.31.15-.608.326-.89.524Zm6.54 17.789a1.37 1.37 0 0 1-.283-.061 1.73 1.73 0 0 1-.262-.107c-.087-.138-.174-.275-.248-.417a8.28 8.28 0 0 1-.384-.852c-.112-.283-.216-.56-.334-.817a3.689 3.689 0 0 0-.191-.366c.005-.08.008-.161.01-.252v-.275a1.254 1.254 0 0 1 .28.074c.09.034.177.075.26.123.083.14.158.283.225.43.131.287.238.573.347.847.103.269.22.532.353.787.063.123.136.24.217.352l.005.255.005.28Zm-3.146-1.697c.04.012.075.027.112.04l.101.04a2.6 2.6 0 0 1 .19.08c.028.09.07.175.109.263.08.174.167.349.255.527.088.178.179.36.264.546.043.094.085.189.124.286a1.878 1.878 0 0 1-.19.403c-.154-.053-.276-.108-.404-.161a7.38 7.38 0 0 0-.114-.262c-.08-.174-.167-.35-.256-.527-.089-.177-.18-.36-.264-.547-.045-.093-.081-.19-.127-.285.022-.069.05-.135.08-.2l.051-.1c.026-.036.044-.068.069-.103Zm8.788-26.811C21.745-.418 24.163-.66 23.92 2a3.337 3.337 0 0 1-3.87-.967"
-            fill="#2C6C60"></path>
-        </svg>
-      </a>
-      <nav id="pc-nav">
-        <ul class="o-switcher o-switcher:pc-nav">
-          <li class="c-nav-item">
-            <a href="#" class="c-nav-link c-nav-link:pc-nav">実績紹介</a>
+<BaseLayout>
+  <section class="o-cover o-cover:no-flex c-bg-cover">
+    <div class="o-cover__overlay o-cover__overlay:has-filter">
+      <picture class="o-frame o-frame:cover">
+        <source type="image/avif" srcset="/img/hero.avif" />
+        <source type="image/webp" srcset="/img/hero.webp" />
+        <img src="/img/hero.png" width="100%" height="100%" decoding="async" fetchpriority="high" alt="" />
+      </picture>
+    </div>
+    <div class="o-container o-container:wrapper">
+      <h1 class="p-front-lead p-front-lead:catch-copy">Catch Copy's</h1>
+      <div class="p-front-press p-front-press:hero">
+        <p class="p-front-lead p-front-lead:hero">Lorem ipsum dolor sit amet, consectetur</p>
+        <p class="p-front-txt p-front-txt:hero">
+          Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna
+          aliqua. Ut enim ad minim veniam Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor
+          incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam Lorem ipsum dolor sit amet, consectetur
+          adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam Lorem
+          ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="c-cushion">
+    <div class="o-container o-container:wrapper">
+      <h2 class="p-front-heading">
+        <span class="p-front-heading__en">EXAMPLES</span>
+        <span class="p-front-heading__small">実績紹介</span>
+      </h2>
+      <ul class="o-switcher o-switcher:p-front-posts">
+        <li class="c-examples-item">
+          <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
+            <picture class="o-frame o-frame:square">
+              <source type="image/avif" srcset="/img/thumb.avif" />
+              <source type="image/webp" srcset="/img/thumb.webp" />
+              <img
+                src="/img/thumb.png"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                alt=""
+              />
+            </picture>
+            <div class="o-stack o-stack:item-inner">
+              <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
+              <h3 class="c-examples-title">タイトル</h3>
+              <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
+            </div>
+          </a>
+        </li>
+        <li class="c-examples-item">
+          <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
+            <picture class="o-frame o-frame:square">
+              <source type="image/avif" srcset="/img/thumb.avif" />
+              <source type="image/webp" srcset="/img/thumb.webp" />
+              <img
+                src="/img/thumb.png"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                alt=""
+              />
+            </picture>
+            <div class="o-stack o-stack:item-inner">
+              <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
+              <h3 class="c-examples-title">タイトル</h3>
+              <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
+            </div>
+          </a>
+        </li>
+        <li class="c-examples-item">
+          <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
+            <picture class="o-frame o-frame:square">
+              <source type="image/avif" srcset="/img/thumb.avif" />
+              <source type="image/webp" srcset="/img/thumb.webp" />
+              <img
+                src="/img/thumb.png"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                alt=""
+              />
+            </picture>
+            <div class="o-stack o-stack:item-inner">
+              <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
+              <h3 class="c-examples-title">タイトル</h3>
+              <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
+            </div>
+          </a>
+        </li>
+        <li class="c-examples-item">
+          <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
+            <picture class="o-frame o-frame:square">
+              <source type="image/avif" srcset="/img/thumb.avif" />
+              <source type="image/webp" srcset="/img/thumb.webp" />
+              <img
+                src="/img/thumb.png"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                alt=""
+              />
+            </picture>
+            <div class="o-stack o-stack:item-inner">
+              <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
+              <h3 class="c-examples-title">タイトル</h3>
+              <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
+            </div>
+          </a>
+        </li>
+        <li class="c-examples-item">
+          <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
+            <picture class="o-frame o-frame:square">
+              <source type="image/avif" srcset="/img/thumb.avif" />
+              <source type="image/webp" srcset="/img/thumb.webp" />
+              <img
+                src="/img/thumb.png"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                alt=""
+              />
+            </picture>
+            <div class="o-stack o-stack:item-inner">
+              <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
+              <h3 class="c-examples-title">タイトル</h3>
+              <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
+            </div>
+          </a>
+        </li>
+        <li class="c-examples-item">
+          <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
+            <picture class="o-frame o-frame:square">
+              <source type="image/avif" srcset="/img/thumb.avif" />
+              <source type="image/webp" srcset="/img/thumb.webp" />
+              <img
+                src="/img/thumb.png"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                alt=""
+              />
+            </picture>
+            <div class="o-stack o-stack:item-inner">
+              <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
+              <h3 class="c-examples-title">タイトル</h3>
+              <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <a href="#" class="c-btn c-btn:wide">実績一覧</a>
+    </div>
+  </section>
+  <section class="o-cover o-cover:no-flex c-bg-cover">
+    <div class="o-cover__overlay o-cover__overlay:has-filter">
+      <picture class="o-frame o-frame:cover">
+        <source type="image/avif" srcset="/img/dummy-img01.avif" />
+        <source type="image/webp" srcset="/img/dummy-img01.webp" />
+        <img
+          src="/img/dummy-img01.jpg"
+          width="100%"
+          height="100%"
+          loading="lazy"
+          decoding="async"
+          fetchpriority="low"
+          alt=""
+        />
+      </picture>
+    </div>
+    <div class="o-container o-container:wrapper">
+      <h2 class="p-front-heading p-front-heading:color-white">
+        <span class="p-front-heading__en">ABOUT US</span>
+        <span class="p-front-heading__small">私たちについて</span>
+      </h2>
+      <div class="p-front-press p-front-press:about-us">
+        <p class="p-front-txt p-front-txt:about-us">Lorem ipsum dolor sit amet, consectetur adipisci elit</p>
+      </div>
+      <a href="#" class="c-btn c-btn:ghost">私たちについて</a>
+    </div>
+  </section>
+  <section class="c-cushion">
+    <div class="o-container o-container:wrapper">
+      <h2 class="p-front-heading">
+        <span class="p-front-heading__en">SERVICES</span>
+        <span class="p-front-heading__small">サービス</span>
+      </h2>
+      <p class="p-front-lead p-front-lead:service-primary">Lorem ipsum dolor sit amet, consectetur adipisci elit</p>
+      <picture class="o-frame">
+        <source type="image/avif" srcset="/img/dummy-img02.avif" />
+        <source type="image/webp" srcset="/img/dummy-img02.webp" />
+        <img
+          src="/img/dummy-img02.jpg"
+          width="100%"
+          height="100%"
+          loading="lazy"
+          decoding="async"
+          fetchpriority="low"
+          alt=""
+        />
+      </picture>
+      <div class="p-front-press p-front-press:service-body">
+        <h3 class="o-has-icon o-has-icon:p-front-service">
+          <span class="c-logo c-logo:p-front-service">
+            <svg width="25" height="32" viewBox="0 0 25 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <style>
+                @media (prefers-color-scheme: dark) {
+                  path:nth-of-type(2) {
+                    fill: #ff5a5a;
+                  }
+                }
+              </style>
+              <path
+                d="M19.193 1.768c-1.924.781-3.828 1.563-5.664 2.463A33.245 33.245 0 0 0 8.3 7.337a17.223 17.223 0 0 0-4.178 4.275 12.85 12.85 0 0 0-1.354 2.686 13.582 13.582 0 0 0-.602 2.216c-.048.254-.087.509-.126.766a10.066 10.066 0 0 1-.007-1.566c.037-.526.114-1.049.23-1.563.237-1.04.62-2.04 1.14-2.972a13.362 13.362 0 0 1 1.883-2.58c.361-.393.745-.762 1.141-1.117s.812-.685 1.236-1.002a24.434 24.434 0 0 1 5.525-3.014 30.714 30.714 0 0 1 6.004-1.698Z"
+                fill="#2C6C60"></path>
+              <path
+                d="M4.481 15.982c-4.596 5.566 7.02 15.982 8.958 8.476 1.21-5.088-4.358-12.84-9.44-8.236"
+                fill="#C82E2E"></path>
+              <path
+                d="M1.8 23.17c-.043.317-.103.629-.161.94l-.18.926a41.212 41.212 0 0 0-.322 1.831 10.78 10.78 0 0 0-.13 1.784c.005.274.04.548.102.815.03.12.069.236.119.349l.038.08.02.037.028.048a1.796 1.796 0 0 0 .631.63c.226.137.47.24.726.304a6.325 6.325 0 0 0 1.726.178 16.97 16.97 0 0 0 1.831-.144c.309-.038.619-.08.93-.127.31-.047.623-.095.94-.138a9.842 9.842 0 0 1-.858.423c-.294.128-.59.242-.892.352-.61.216-1.241.373-1.882.469a8.815 8.815 0 0 1-.493.054 6.087 6.087 0 0 1-.502.019 4.992 4.992 0 0 1-1.029-.1 3.538 3.538 0 0 1-1.025-.382A2.823 2.823 0 0 1 .4 30.506l-.034-.06-.036-.067a2.851 2.851 0 0 1-.24-.68 4.43 4.43 0 0 1-.087-1.054c.012-.334.047-.668.106-.998.055-.322.13-.645.214-.954.353-1.228.849-2.41 1.477-3.523Zm6.553-11.175c.248-.243.518-.462.806-.656.29-.194.596-.366.912-.515a8.793 8.793 0 0 1 1.998-.654 12.382 12.382 0 0 1 4.212-.087c.702.102 1.395.259 2.072.47.683.21 1.345.48 1.98.807.644.33 1.25.729 1.808 1.189a7.792 7.792 0 0 1 1.483 1.627c.206.31.386.639.537.98a5.81 5.81 0 0 1 .422 3.307 7.24 7.24 0 0 1-.685 2.088 9.157 9.157 0 0 1-.54.938c-.198.298-.41.587-.637.864a12.835 12.835 0 0 1-3.188 2.755 12.49 12.49 0 0 1-1.864.946c-.323.13-.651.242-.983.345-.332.097-.67.174-1.01.231a13.07 13.07 0 0 0 3.563-1.954 13.78 13.78 0 0 0 2.822-2.835 10.012 10.012 0 0 0 .991-1.692 6.625 6.625 0 0 0 .534-1.832 5.017 5.017 0 0 0-.39-2.732 5.528 5.528 0 0 0-.456-.822 6.846 6.846 0 0 0-1.274-1.415 9.552 9.552 0 0 0-1.605-1.103 13.664 13.664 0 0 0-7.708-1.567c-.67.068-1.33.206-1.97.412a7.138 7.138 0 0 0-.94.381c-.31.15-.608.326-.89.524Zm6.54 17.789a1.37 1.37 0 0 1-.283-.061 1.73 1.73 0 0 1-.262-.107c-.087-.138-.174-.275-.248-.417a8.28 8.28 0 0 1-.384-.852c-.112-.283-.216-.56-.334-.817a3.689 3.689 0 0 0-.191-.366c.005-.08.008-.161.01-.252v-.275a1.254 1.254 0 0 1 .28.074c.09.034.177.075.26.123.083.14.158.283.225.43.131.287.238.573.347.847.103.269.22.532.353.787.063.123.136.24.217.352l.005.255.005.28Zm-3.146-1.697c.04.012.075.027.112.04l.101.04a2.6 2.6 0 0 1 .19.08c.028.09.07.175.109.263.08.174.167.349.255.527.088.178.179.36.264.546.043.094.085.189.124.286a1.878 1.878 0 0 1-.19.403c-.154-.053-.276-.108-.404-.161a7.38 7.38 0 0 0-.114-.262c-.08-.174-.167-.35-.256-.527-.089-.177-.18-.36-.264-.547-.045-.093-.081-.19-.127-.285.022-.069.05-.135.08-.2l.051-.1c.026-.036.044-.068.069-.103Zm8.788-26.811C21.745-.418 24.163-.66 23.92 2a3.337 3.337 0 0 1-3.87-.967"
+                fill="#2C6C60"></path>
+            </svg>
+          </span>
+          <span class="p-front-service-name p-home-main-service-label">SERVICE NAME</span>
+        </h3>
+        <p class="p-front-lead p-front-lead:service-min-first">Lorem ipsum dolor sit amet, consectetur adipisci elit</p>
+        <p class="p-front-txt p-front-txt:service-primary">
+          Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna
+          aliqua. Ut enim ad minim veniam
+        </p>
+        <ul class="o-stack">
+          <li class="p-front-notice">
+            Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam
           </li>
-          <li class="c-nav-item">
-            <a href="#" class="c-nav-link c-nav-link:pc-nav">私たちについて</a>
-          </li>
-          <li class="c-nav-item">
-            <a href="#" class="c-nav-link c-nav-link:pc-nav">サービス</a>
-          </li>
-          <li class="c-nav-item">
-            <a href="#" class="c-nav-link c-nav-link:pc-nav">会社情報</a>
-          </li>
-          <li class="c-nav-item">
-            <a href="#" class="c-nav-link c-nav-link:pc-nav">ニュース</a>
-          </li>
-          <li class="c-nav-item">
-            <a href="#" class="c-nav-link c-nav-link:pc-nav">記事・トピック</a>
-          </li>
-          <li class="c-nav-item">
-            <a href="#" class="c-nav-link c-nav-link:pc-nav">お問い合わせ</a>
+          <li class="p-front-notice">
+            Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam
           </li>
         </ul>
-      </nav>
-      <details id="sp-nav">
-        <summary class="c-menu-btn">
-          <span class="c-menu-btn__inner"></span>
-        </summary>
-        <div id="sidebar" class="c-sidebar">
-          <button class="c-menu-btn c-menu-btn--sidebar" type="button" aria-label="menu close">
-            <span class="c-menu-btn__inner"></span>
-          </button>
-          <nav class="c-sp-nav">
-            <ul class="o-switcher o-switcher:sp-nav">
-              <li class="c-nav-item c-nav-item:sp-nav">
-                <a href="#" class="c-nav-link c-nav-link:sp-nav">
-                  ホーム
-                  <span class="c-nav-link__en">HOME</span>
-                </a>
-              </li>
-              <li class="c-nav-item c-nav-item:sp-nav">
-                <a href="#" class="c-nav-link c-nav-link:sp-nav"
-                  >実績紹介
-                  <span class="c-nav-link__en">EXAMPLES</span>
-                </a>
-              </li>
-              <li class="c-nav-item c-nav-item:sp-nav">
-                <a href="#" class="c-nav-link c-nav-link:sp-nav"
-                  >私たちについて
-                  <span class="c-nav-link__en">ABOUT US</span>
-                </a>
-              </li>
-              <li class="c-nav-item c-nav-item:sp-nav">
-                <a href="#" class="c-nav-link c-nav-link:sp-nav"
-                  >サービス
-                  <span class="c-nav-link__en">SERVICES</span>
-                </a>
-              </li>
-              <li class="c-nav-item c-nav-item:sp-nav">
-                <a href="#" class="c-nav-link c-nav-link:sp-nav"
-                  >会社情報
-                  <span class="c-nav-link__en">COMPANY</span>
-                </a>
-              </li>
-              <li class="c-nav-item c-nav-item:sp-nav">
-                <a href="#" class="c-nav-link c-nav-link:sp-nav"
-                  >ニュース
-                  <span class="c-nav-link__en">NEWS</span>
-                </a>
-              </li>
-              <li class="c-nav-item c-nav-item:sp-nav">
-                <a href="#" class="c-nav-link c-nav-link:sp-nav"
-                  >記事・トピック
-                  <span class="c-nav-link__en">STORIES</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <p class="c-small-note c-small-note:sp-nav">お見積り、ご依頼、ご相談など、お気軽にお問い合わせください。</p>
-          <a href="#" class="c-btn c-btn:accent">お問い合わせ</a>
-          <div class="o-stack o-stack:sp-follow">
-            <p class="c-follow-heading">FOLLOW US</p>
-            <div class="o-cluster o-cluster:follow">
-              <a href="#" class="c-follow-link" target="_blank" rel="noopener" aria-label="Go to Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                  <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                  <path
-                    d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
-                    fill="currentColor"></path>
-                </svg>
-              </a>
-              <a href="#" class="c-follow-link" target="_blank" rel="noopener" aria-label="Go to Twitter">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                  <path
-                    d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
-                    fill="currentColor"></path>
-                </svg>
-              </a>
-              <a href="#" class="c-follow-link" target="_blank" rel="noopener" aria-label="Go to instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                  <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                  <path
-                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
-                    fill="currentColor"></path>
-                </svg>
-              </a>
-              <a href="#" class="c-follow-link" target="_blank" rel="noopener" aria-label="Go to Youtube">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                  ><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                  <path
-                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
-                    fill="currentColor"></path></svg
-                >
-              </a>
-            </div>
-          </div>
-        </div>
-      </details>
-    </header>
-    <main>
-      <section class="o-cover o-cover:no-flex c-bg-cover">
-        <div class="o-cover__overlay o-cover__overlay:has-filter">
-          <picture class="o-frame o-frame:cover">
-            <source type="image/avif" srcset="/img/hero.avif" />
-            <source type="image/webp" srcset="/img/hero.webp" />
-            <img src="/img/hero.png" decoding="async" alt="" width="100%" height="100%" />
-          </picture>
-        </div>
-        <div class="o-container o-container:wrapper">
-          <h1 class="p-front-lead p-front-lead:catch-copy">Catch Copy's</h1>
-          <div class="p-front-press p-front-press:hero">
-            <p class="p-front-lead p-front-lead:hero">Lorem ipsum dolor sit amet, consectetur</p>
-            <p class="p-front-txt p-front-txt:hero">
-              Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore
-              magna aliqua. Ut enim ad minim veniam Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod
-              tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam Lorem ipsum dolor sit amet,
-              consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam
-            </p>
-          </div>
-        </div>
-      </section>
-      <section class="c-cushion">
-        <div class="o-container o-container:wrapper">
-          <h2 class="p-front-heading">
-            <span class="p-front-heading__en">EXAMPLES</span>
-            <span class="p-front-heading__small">実績紹介</span>
-          </h2>
-          <ul class="o-switcher o-switcher:p-front-posts">
-            <li class="c-examples-item">
-              <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
-                <picture class="o-frame o-frame:square">
-                  <source type="image/avif" srcset="/img/thumb.avif" />
-                  <source type="image/webp" srcset="/img/thumb.webp" />
-                  <img src="/img/thumb.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                </picture>
-                <div class="o-stack o-stack:item-inner">
-                  <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
-                  <h3 class="c-examples-title">タイトル</h3>
-                  <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
-                </div>
-              </a>
-            </li>
-            <li class="c-examples-item">
-              <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
-                <picture class="o-frame o-frame:square">
-                  <source type="image/avif" srcset="/img/thumb.avif" />
-                  <source type="image/webp" srcset="/img/thumb.webp" />
-                  <img src="/img/thumb.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                </picture>
-                <div class="o-stack o-stack:item-inner">
-                  <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
-                  <h3 class="c-examples-title">タイトル</h3>
-                  <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
-                </div>
-              </a>
-            </li>
-            <li class="c-examples-item">
-              <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
-                <picture class="o-frame o-frame:square">
-                  <source type="image/avif" srcset="/img/thumb.avif" />
-                  <source type="image/webp" srcset="/img/thumb.webp" />
-                  <img src="/img/thumb.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                </picture>
-                <div class="o-stack o-stack:item-inner">
-                  <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
-                  <h3 class="c-examples-title">タイトル</h3>
-                  <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
-                </div>
-              </a>
-            </li>
-            <li class="c-examples-item">
-              <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
-                <picture class="o-frame o-frame:square">
-                  <source type="image/avif" srcset="/img/thumb.avif" />
-                  <source type="image/webp" srcset="/img/thumb.webp" />
-                  <img src="/img/thumb.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                </picture>
-                <div class="o-stack o-stack:item-inner">
-                  <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
-                  <h3 class="c-examples-title">タイトル</h3>
-                  <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
-                </div>
-              </a>
-            </li>
-            <li class="c-examples-item">
-              <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
-                <picture class="o-frame o-frame:square">
-                  <source type="image/avif" srcset="/img/thumb.avif" />
-                  <source type="image/webp" srcset="/img/thumb.webp" />
-                  <img src="/img/thumb.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                </picture>
-                <div class="o-stack o-stack:item-inner">
-                  <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
-                  <h3 class="c-examples-title">タイトル</h3>
-                  <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
-                </div>
-              </a>
-            </li>
-            <li class="c-examples-item">
-              <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
-                <picture class="o-frame o-frame:square">
-                  <source type="image/avif" srcset="/img/thumb.avif" />
-                  <source type="image/webp" srcset="/img/thumb.webp" />
-                  <img src="/img/thumb.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                </picture>
-                <div class="o-stack o-stack:item-inner">
-                  <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
-                  <h3 class="c-examples-title">タイトル</h3>
-                  <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
-                </div>
-              </a>
-            </li>
-          </ul>
-          <a href="#" class="c-btn c-btn:wide">実績一覧</a>
-        </div>
-      </section>
-      <section class="o-cover o-cover:no-flex c-bg-cover">
-        <div class="o-cover__overlay o-cover__overlay:has-filter">
-          <picture class="o-frame o-frame:cover">
-            <source type="image/avif" srcset="/img/dummy-img01.avif" />
-            <source type="image/webp" srcset="/img/dummy-img01.webp" />
-            <img src="/img/dummy-img01.jpg" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-          </picture>
-        </div>
-        <div class="o-container o-container:wrapper">
-          <h2 class="p-front-heading p-front-heading:color-white">
-            <span class="p-front-heading__en">ABOUT US</span>
-            <span class="p-front-heading__small">私たちについて</span>
-          </h2>
-          <div class="p-front-press p-front-press:about-us">
-            <p class="p-front-txt p-front-txt:about-us">Lorem ipsum dolor sit amet, consectetur adipisci elit</p>
-          </div>
-          <a href="#" class="c-btn c-btn:ghost">私たちについて</a>
-        </div>
-      </section>
-      <section class="c-cushion">
-        <div class="o-container o-container:wrapper">
-          <h2 class="p-front-heading">
-            <span class="p-front-heading__en">SERVICES</span>
-            <span class="p-front-heading__small">サービス</span>
-          </h2>
-          <p class="p-front-lead p-front-lead:service-primary">Lorem ipsum dolor sit amet, consectetur adipisci elit</p>
-          <picture class="o-frame">
-            <source type="image/avif" srcset="/img/dummy-img02.avif" />
-            <source type="image/webp" srcset="/img/dummy-img02.webp" />
-            <img src="/img/dummy-img02.jpg" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-          </picture>
-          <div class="p-front-press p-front-press:service-body">
-            <h3 class="o-has-icon o-has-icon:p-front-service">
-              <span class="c-logo c-logo:p-front-service">
-                <svg width="25" height="32" viewBox="0 0 25 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <style>
-                    @media (prefers-color-scheme: dark) {
-                      path:nth-of-type(2) {
-                        fill: #ff5a5a;
-                      }
-                    }
-                  </style>
-                  <path
-                    d="M19.193 1.768c-1.924.781-3.828 1.563-5.664 2.463A33.245 33.245 0 0 0 8.3 7.337a17.223 17.223 0 0 0-4.178 4.275 12.85 12.85 0 0 0-1.354 2.686 13.582 13.582 0 0 0-.602 2.216c-.048.254-.087.509-.126.766a10.066 10.066 0 0 1-.007-1.566c.037-.526.114-1.049.23-1.563.237-1.04.62-2.04 1.14-2.972a13.362 13.362 0 0 1 1.883-2.58c.361-.393.745-.762 1.141-1.117s.812-.685 1.236-1.002a24.434 24.434 0 0 1 5.525-3.014 30.714 30.714 0 0 1 6.004-1.698Z"
-                    fill="#2C6C60"></path>
-                  <path
-                    d="M4.481 15.982c-4.596 5.566 7.02 15.982 8.958 8.476 1.21-5.088-4.358-12.84-9.44-8.236"
-                    fill="#C82E2E"></path>
-                  <path
-                    d="M1.8 23.17c-.043.317-.103.629-.161.94l-.18.926a41.212 41.212 0 0 0-.322 1.831 10.78 10.78 0 0 0-.13 1.784c.005.274.04.548.102.815.03.12.069.236.119.349l.038.08.02.037.028.048a1.796 1.796 0 0 0 .631.63c.226.137.47.24.726.304a6.325 6.325 0 0 0 1.726.178 16.97 16.97 0 0 0 1.831-.144c.309-.038.619-.08.93-.127.31-.047.623-.095.94-.138a9.842 9.842 0 0 1-.858.423c-.294.128-.59.242-.892.352-.61.216-1.241.373-1.882.469a8.815 8.815 0 0 1-.493.054 6.087 6.087 0 0 1-.502.019 4.992 4.992 0 0 1-1.029-.1 3.538 3.538 0 0 1-1.025-.382A2.823 2.823 0 0 1 .4 30.506l-.034-.06-.036-.067a2.851 2.851 0 0 1-.24-.68 4.43 4.43 0 0 1-.087-1.054c.012-.334.047-.668.106-.998.055-.322.13-.645.214-.954.353-1.228.849-2.41 1.477-3.523Zm6.553-11.175c.248-.243.518-.462.806-.656.29-.194.596-.366.912-.515a8.793 8.793 0 0 1 1.998-.654 12.382 12.382 0 0 1 4.212-.087c.702.102 1.395.259 2.072.47.683.21 1.345.48 1.98.807.644.33 1.25.729 1.808 1.189a7.792 7.792 0 0 1 1.483 1.627c.206.31.386.639.537.98a5.81 5.81 0 0 1 .422 3.307 7.24 7.24 0 0 1-.685 2.088 9.157 9.157 0 0 1-.54.938c-.198.298-.41.587-.637.864a12.835 12.835 0 0 1-3.188 2.755 12.49 12.49 0 0 1-1.864.946c-.323.13-.651.242-.983.345-.332.097-.67.174-1.01.231a13.07 13.07 0 0 0 3.563-1.954 13.78 13.78 0 0 0 2.822-2.835 10.012 10.012 0 0 0 .991-1.692 6.625 6.625 0 0 0 .534-1.832 5.017 5.017 0 0 0-.39-2.732 5.528 5.528 0 0 0-.456-.822 6.846 6.846 0 0 0-1.274-1.415 9.552 9.552 0 0 0-1.605-1.103 13.664 13.664 0 0 0-7.708-1.567c-.67.068-1.33.206-1.97.412a7.138 7.138 0 0 0-.94.381c-.31.15-.608.326-.89.524Zm6.54 17.789a1.37 1.37 0 0 1-.283-.061 1.73 1.73 0 0 1-.262-.107c-.087-.138-.174-.275-.248-.417a8.28 8.28 0 0 1-.384-.852c-.112-.283-.216-.56-.334-.817a3.689 3.689 0 0 0-.191-.366c.005-.08.008-.161.01-.252v-.275a1.254 1.254 0 0 1 .28.074c.09.034.177.075.26.123.083.14.158.283.225.43.131.287.238.573.347.847.103.269.22.532.353.787.063.123.136.24.217.352l.005.255.005.28Zm-3.146-1.697c.04.012.075.027.112.04l.101.04a2.6 2.6 0 0 1 .19.08c.028.09.07.175.109.263.08.174.167.349.255.527.088.178.179.36.264.546.043.094.085.189.124.286a1.878 1.878 0 0 1-.19.403c-.154-.053-.276-.108-.404-.161a7.38 7.38 0 0 0-.114-.262c-.08-.174-.167-.35-.256-.527-.089-.177-.18-.36-.264-.547-.045-.093-.081-.19-.127-.285.022-.069.05-.135.08-.2l.051-.1c.026-.036.044-.068.069-.103Zm8.788-26.811C21.745-.418 24.163-.66 23.92 2a3.337 3.337 0 0 1-3.87-.967"
-                    fill="#2C6C60"></path>
-                </svg>
-              </span>
-              <span class="p-front-service-name p-home-main-service-label">SERVICE NAME</span>
-            </h3>
-            <p class="p-front-lead p-front-lead:service-min-first">
-              Lorem ipsum dolor sit amet, consectetur adipisci elit
-            </p>
-            <p class="p-front-txt p-front-txt:service-primary">
-              Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore
-              magna aliqua. Ut enim ad minim veniam
-            </p>
-            <ul class="o-stack">
-              <li class="p-front-notice">
-                Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam
-              </li>
-              <li class="p-front-notice">
-                Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam
-              </li>
-            </ul>
-          </div>
-          <div class="o-switcher o-switcher:p-front-media">
-            <div class="p-front-media-pict">
-              <picture class="o-frame">
-                <source type="image/avif" srcset="/img/dummy-img03.avif" />
-                <source type="image/webp" srcset="/img/dummy-img03.webp" />
-                <img src="/img/dummy-img03.jpg" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-              </picture>
-            </div>
-            <div class="p-front-media-txt">
-              <h3 class="p-front-lead p-front-lead:service-min-second">Lorem ipsum dolor sit amet</h3>
-              <p class="p-front-lead p-front-lead:service-min-third">
-                Lorem ipsum dolor sit amet, consectetur adipisci elit
-              </p>
-              <p class="p-front-txt">
-                Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam
-              </p>
-            </div>
-          </div>
-          <a href="#" class="c-btn c-btn:wide">サービス一覧</a>
-        </div>
-      </section>
-      <section class="c-bg-cover p-front-news">
-        <div class="o-container o-container:wrapper">
-          <h2 class="p-front-heading">
-            <span class="p-front-heading__en">NEWS</span>
-            <span class="p-front-heading__small">ニュース</span>
-          </h2>
-          <div class="p-front-press p-front-press:news">
-            <ul class="o-stack o-stack:c-news">
-              <li class="o-switcher o-switcher:c-news">
-                <time datetime="2022-00-00">2022.00.00</time>
-                <a class="c-news-title" href="#">お知らせ 9</a>
-              </li>
-              <li class="o-switcher o-switcher:c-news">
-                <time datetime="2022-00-00">2022.00.00</time>
-                <a class="c-news-title" href="#">お知らせ 8</a>
-              </li>
-              <li class="o-switcher o-switcher:c-news">
-                <time datetime="2022-00-00">2022.00.00</time>
-                <a class="c-news-title" href="#">お知らせ 7</a>
-              </li>
-              <li class="o-switcher o-switcher:c-news">
-                <time datetime="2022-00-00">2022.00.00</time>
-                <a class="c-news-title" href="#">お知らせ 6</a>
-              </li>
-              <li class="o-switcher o-switcher:c-news">
-                <time datetime="2022-00-00">2022.00.00</time>
-                <a class="c-news-title" href="#">お知らせ 5</a>
-              </li>
-            </ul>
-          </div>
-          <a href="#" class="c-btn c-btn:wide">ニュース一覧</a>
-        </div>
-      </section>
-      <section class="c-cushion">
-        <div class="o-container o-container:wrapper">
-          <h2 class="p-front-heading">
-            <span class="p-front-heading__en">STORIES</span>
-            <span class="p-front-heading__small">記事・トピック</span>
-          </h2>
-          <ul class="o-switcher o-switcher:p-front-posts">
-            <li class="c-posts-item">
-              <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
-                <picture class="o-frame">
-                  <source type="image/avif" srcset="/img/thumb.avif" />
-                  <source type="image/webp" srcset="/img/thumb.webp" />
-                  <img src="/img/thumb.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                </picture>
-                <div class="o-grid o-grid:posts">
-                  <picture class="o-frame o-frame:square">
-                    <source type="image/avif" srcset="/img/profile.avif" />
-                    <source type="image/webp" srcset="/img/profile.webp" />
-                    <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                  </picture>
-                  <div class="o-stack o-stack:posts-bottom">
-                    <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
-                    <span class="c-posts-trim c-posts-trim:author">名前</span>
-                    <div class="o-cluster o-cluster:posts-bottom">
-                      <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li class="c-posts-item">
-              <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
-                <picture class="o-frame">
-                  <source type="image/avif" srcset="/img/thumb.avif" />
-                  <source type="image/webp" srcset="/img/thumb.webp" />
-                  <img src="/img/thumb.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                </picture>
-                <div class="o-grid o-grid:posts">
-                  <picture class="o-frame o-frame:square">
-                    <source type="image/avif" srcset="/img/profile.avif" />
-                    <source type="image/webp" srcset="/img/profile.webp" />
-                    <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                  </picture>
-                  <div class="o-stack o-stack:posts-bottom">
-                    <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
-                    <span class="c-posts-trim c-posts-trim:author">名前</span>
-                    <div class="o-cluster o-cluster:posts-bottom">
-                      <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li class="c-posts-item">
-              <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
-                <picture class="o-frame">
-                  <source type="image/avif" srcset="/img/thumb.avif" />
-                  <source type="image/webp" srcset="/img/thumb.webp" />
-                  <img src="/img/thumb.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                </picture>
-                <div class="o-grid o-grid:posts">
-                  <picture class="o-frame o-frame:square">
-                    <source type="image/avif" srcset="/img/profile.avif" />
-                    <source type="image/webp" srcset="/img/profile.webp" />
-                    <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                  </picture>
-                  <div class="o-stack o-stack:posts-bottom">
-                    <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
-                    <span class="c-posts-trim c-posts-trim:author">名前</span>
-                    <div class="o-cluster o-cluster:posts-bottom">
-                      <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li class="c-posts-item">
-              <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
-                <picture class="o-frame">
-                  <source type="image/avif" srcset="/img/thumb.avif" />
-                  <source type="image/webp" srcset="/img/thumb.webp" />
-                  <img src="/img/thumb.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                </picture>
-                <div class="o-grid o-grid:posts">
-                  <picture class="o-frame o-frame:square">
-                    <source type="image/avif" srcset="/img/profile.avif" />
-                    <source type="image/webp" srcset="/img/profile.webp" />
-                    <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                  </picture>
-                  <div class="o-stack o-stack:posts-bottom">
-                    <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
-                    <span class="c-posts-trim c-posts-trim:author">名前</span>
-                    <div class="o-cluster o-cluster:posts-bottom">
-                      <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li class="c-posts-item">
-              <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
-                <picture class="o-frame">
-                  <source type="image/avif" srcset="/img/thumb.avif" />
-                  <source type="image/webp" srcset="/img/thumb.webp" />
-                  <img src="/img/thumb.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                </picture>
-                <div class="o-grid o-grid:posts">
-                  <picture class="o-frame o-frame:square">
-                    <source type="image/avif" srcset="/img/profile.avif" />
-                    <source type="image/webp" srcset="/img/profile.webp" />
-                    <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                  </picture>
-                  <div class="o-stack o-stack:posts-bottom">
-                    <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
-                    <span class="c-posts-trim c-posts-trim:author">名前</span>
-                    <div class="o-cluster o-cluster:posts-bottom">
-                      <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li class="c-posts-item">
-              <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
-                <picture class="o-frame">
-                  <source type="image/avif" srcset="/img/thumb.avif" />
-                  <source type="image/webp" srcset="/img/thumb.webp" />
-                  <img src="/img/thumb.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                </picture>
-                <div class="o-grid o-grid:posts">
-                  <picture class="o-frame o-frame:square">
-                    <source type="image/avif" srcset="/img/profile.avif" />
-                    <source type="image/webp" srcset="/img/profile.webp" />
-                    <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-                  </picture>
-                  <div class="o-stack o-stack:posts-bottom">
-                    <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
-                    <span class="c-posts-trim c-posts-trim:author">名前</span>
-                    <div class="o-cluster o-cluster:posts-bottom">
-                      <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-          </ul>
-          <a href="#" class="c-btn c-btn:wide">記事・トピック一覧</a>
-        </div>
-      </section>
-      <section class="c-common-cta">
-        <div class="o-container o-container:content">
-          <h2 class="c-common-cta__heading">いつでもお問い合わせください</h2>
-          <p class="c-common-cta__txt">
-            私たちにご興味を持っていただきありがとうございます。<br
-            />ご相談・ご質問は、こちらからお気軽にお問い合わせください。
-          </p>
-          <a href="#" class="c-btn c-btn:accent">お問い合わせ</a>
-        </div>
-      </section>
-    </main>
-    <footer class="c-footer">
-      <div class="o-container o-container:wrapper">
-        <div class="o-switcher o-switcher:footer">
-          <div class="c-footer-navs">
-            <ul class="o-switcher o-switcher:ft-nav">
-              <li class="c-nav-item c-nav-item:ft-nav">
-                <a href="#" class="c-nav-link c-nav-link:ft-nav">ホーム</a>
-              </li>
-              <li class="c-nav-item c-nav-item:ft-nav">
-                <a href="#" class="c-nav-link c-nav-link:ft-nav">実績紹介</a>
-              </li>
-              <li class="c-nav-item c-nav-item:ft-nav">
-                <a href="#" class="c-nav-link c-nav-link:ft-nav">私たちについて</a>
-              </li>
-              <li class="c-nav-item c-nav-item:ft-nav">
-                <a href="#" class="c-nav-link c-nav-link:ft-nav">サービス</a>
-              </li>
-              <li class="c-nav-item c-nav-item:ft-nav">
-                <a href="#" class="c-nav-link c-nav-link:ft-nav">会社情報</a>
-              </li>
-              <li class="c-nav-item c-nav-item:ft-nav">
-                <a href="#" class="c-nav-link c-nav-link:ft-nav">ニュース</a>
-              </li>
-              <li class="c-nav-item c-nav-item:ft-nav">
-                <a href="#" class="c-nav-link c-nav-link:ft-nav">記事・トピック</a>
-              </li>
-              <li class="c-nav-item c-nav-item:ft-nav">
-                <a href="#" class="c-nav-link c-nav-link:ft-nav">お問い合わせ</a>
-              </li>
-            </ul>
-            <ul class="o-switcher o-switcher:btm-nav">
-              <li class="c-nav-item">
-                <a href="#" class="c-nav-link c-nav-link:btm-nav">利用規約</a>
-              </li>
-              <li class="c-nav-item">
-                <a href="#" class="c-nav-link c-nav-link:btm-nav">プライバシーポリシー</a>
-              </li>
-            </ul>
-          </div>
-          <div class="o-stack o-stack:follow-us">
-            <p class="c-follow-heading">FOLLOW US</p>
-            <div class="o-cluster o-cluster:follow">
-              <a href="#" class="c-follow-link" target="_blank" rel="noopener" aria-label="Go to Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                  <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                  <path
-                    d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
-                    fill="currentColor"></path>
-                </svg>
-              </a>
-              <a href="#" class="c-follow-link" target="_blank" rel="noopener" aria-label="Go to Twitter">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                  <path
-                    d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
-                    fill="currentColor"></path>
-                </svg>
-              </a>
-              <a href="#" class="c-follow-link" target="_blank" rel="noopener" aria-label="Go to instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                  <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                  <path
-                    d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
-                    fill="currentColor"></path>
-                </svg>
-              </a>
-              <a href="#" class="c-follow-link" target="_blank" rel="noopener" aria-label="Go to Youtube">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                  ><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                  <path
-                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
-                    fill="currentColor"></path></svg
-                >
-              </a>
-            </div>
-          </div>
-        </div>
-        <p class="c-small-note c-small-note:copyright">©︎ examples.com</p>
       </div>
-    </footer>
-  </body>
-  <script src="../scripts/app.js"></script>
-  <script type="application/ld+json"></script>
-</html>
+      <div class="o-switcher o-switcher:p-front-media">
+        <div class="p-front-media-pict">
+          <picture class="o-frame">
+            <source type="image/avif" srcset="/img/dummy-img03.avif" />
+            <source type="image/webp" srcset="/img/dummy-img03.webp" />
+            <img src="/img/dummy-img03.jpg" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
+          </picture>
+        </div>
+        <div class="p-front-media-txt">
+          <h3 class="p-front-lead p-front-lead:service-min-second">Lorem ipsum dolor sit amet</h3>
+          <p class="p-front-lead p-front-lead:service-min-third">
+            Lorem ipsum dolor sit amet, consectetur adipisci elit
+          </p>
+          <p class="p-front-txt">
+            Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam
+          </p>
+        </div>
+      </div>
+      <a href="#" class="c-btn c-btn:wide">サービス一覧</a>
+    </div>
+  </section>
+  <section class="c-bg-cover p-front-news">
+    <div class="o-container o-container:wrapper">
+      <h2 class="p-front-heading">
+        <span class="p-front-heading__en">NEWS</span>
+        <span class="p-front-heading__small">ニュース</span>
+      </h2>
+      <div class="p-front-press p-front-press:news">
+        <ul class="o-stack o-stack:c-news">
+          <li class="o-switcher o-switcher:c-news">
+            <time datetime="2022-00-00">2022.00.00</time>
+            <a class="c-news-title" href="#">お知らせ 9</a>
+          </li>
+          <li class="o-switcher o-switcher:c-news">
+            <time datetime="2022-00-00">2022.00.00</time>
+            <a class="c-news-title" href="#">お知らせ 8</a>
+          </li>
+          <li class="o-switcher o-switcher:c-news">
+            <time datetime="2022-00-00">2022.00.00</time>
+            <a class="c-news-title" href="#">お知らせ 7</a>
+          </li>
+          <li class="o-switcher o-switcher:c-news">
+            <time datetime="2022-00-00">2022.00.00</time>
+            <a class="c-news-title" href="#">お知らせ 6</a>
+          </li>
+          <li class="o-switcher o-switcher:c-news">
+            <time datetime="2022-00-00">2022.00.00</time>
+            <a class="c-news-title" href="#">お知らせ 5</a>
+          </li>
+        </ul>
+      </div>
+      <a href="/news" class="c-btn c-btn:wide">ニュース一覧</a>
+    </div>
+  </section>
+  <section class="c-cushion">
+    <div class="o-container o-container:wrapper">
+      <h2 class="p-front-heading">
+        <span class="p-front-heading__en">STORIES</span>
+        <span class="p-front-heading__small">記事・トピック</span>
+      </h2>
+      <ul class="o-switcher o-switcher:p-front-posts">
+        <li class="c-posts-item">
+          <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
+            <picture class="o-frame">
+              <source type="image/avif" srcset="/img/thumb.avif" />
+              <source type="image/webp" srcset="/img/thumb.webp" />
+              <img
+                src="/img/thumb.png"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                alt=""
+              />
+            </picture>
+            <div class="o-grid o-grid:posts">
+              <picture class="o-frame o-frame:square">
+                <source type="image/avif" srcset="/img/profile.avif" />
+                <source type="image/webp" srcset="/img/profile.webp" />
+                <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
+              </picture>
+              <div class="o-stack o-stack:posts-bottom">
+                <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
+                <span class="c-posts-trim c-posts-trim:author">名前</span>
+                <div class="o-cluster o-cluster:posts-bottom">
+                  <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="c-posts-item">
+          <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
+            <picture class="o-frame">
+              <source type="image/avif" srcset="/img/thumb.avif" />
+              <source type="image/webp" srcset="/img/thumb.webp" />
+              <img
+                src="/img/thumb.png"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                alt=""
+              />
+            </picture>
+            <div class="o-grid o-grid:posts">
+              <picture class="o-frame o-frame:square">
+                <source type="image/avif" srcset="/img/profile.avif" />
+                <source type="image/webp" srcset="/img/profile.webp" />
+                <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
+              </picture>
+              <div class="o-stack o-stack:posts-bottom">
+                <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
+                <span class="c-posts-trim c-posts-trim:author">名前</span>
+                <div class="o-cluster o-cluster:posts-bottom">
+                  <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="c-posts-item">
+          <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
+            <picture class="o-frame">
+              <source type="image/avif" srcset="/img/thumb.avif" />
+              <source type="image/webp" srcset="/img/thumb.webp" />
+              <img
+                src="/img/thumb.png"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                alt=""
+              />
+            </picture>
+            <div class="o-grid o-grid:posts">
+              <picture class="o-frame o-frame:square">
+                <source type="image/avif" srcset="/img/profile.avif" />
+                <source type="image/webp" srcset="/img/profile.webp" />
+                <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
+              </picture>
+              <div class="o-stack o-stack:posts-bottom">
+                <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
+                <span class="c-posts-trim c-posts-trim:author">名前</span>
+                <div class="o-cluster o-cluster:posts-bottom">
+                  <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="c-posts-item">
+          <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
+            <picture class="o-frame">
+              <source type="image/avif" srcset="/img/thumb.avif" />
+              <source type="image/webp" srcset="/img/thumb.webp" />
+              <img
+                src="/img/thumb.png"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                alt=""
+              />
+            </picture>
+            <div class="o-grid o-grid:posts">
+              <picture class="o-frame o-frame:square">
+                <source type="image/avif" srcset="/img/profile.avif" />
+                <source type="image/webp" srcset="/img/profile.webp" />
+                <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
+              </picture>
+              <div class="o-stack o-stack:posts-bottom">
+                <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
+                <span class="c-posts-trim c-posts-trim:author">名前</span>
+                <div class="o-cluster o-cluster:posts-bottom">
+                  <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="c-posts-item">
+          <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
+            <picture class="o-frame">
+              <source type="image/avif" srcset="/img/thumb.avif" />
+              <source type="image/webp" srcset="/img/thumb.webp" />
+              <img
+                src="/img/thumb.png"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                alt=""
+              />
+            </picture>
+            <div class="o-grid o-grid:posts">
+              <picture class="o-frame o-frame:square">
+                <source type="image/avif" srcset="/img/profile.avif" />
+                <source type="image/webp" srcset="/img/profile.webp" />
+                <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
+              </picture>
+              <div class="o-stack o-stack:posts-bottom">
+                <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
+                <span class="c-posts-trim c-posts-trim:author">名前</span>
+                <div class="o-cluster o-cluster:posts-bottom">
+                  <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="c-posts-item">
+          <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
+            <picture class="o-frame">
+              <source type="image/avif" srcset="/img/thumb.avif" />
+              <source type="image/webp" srcset="/img/thumb.webp" />
+              <img
+                src="/img/thumb.png"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+                alt=""
+              />
+            </picture>
+            <div class="o-grid o-grid:posts">
+              <picture class="o-frame o-frame:square">
+                <source type="image/avif" srcset="/img/profile.avif" />
+                <source type="image/webp" srcset="/img/profile.webp" />
+                <img
+                  src="/img/profile.png"
+                  width="100%"
+                  height="100%"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low"
+                  alt=""
+                />
+              </picture>
+              <div class="o-stack o-stack:posts-bottom">
+                <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
+                <span class="c-posts-trim c-posts-trim:author">名前</span>
+                <div class="o-cluster o-cluster:posts-bottom">
+                  <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <a href="#" class="c-btn c-btn:wide">記事・トピック一覧</a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,195 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+.c-pre-form {
+  line-height: setting.lineheight(body);
+  font-size: clamp(setting.fontsize(s), calc((100vw - 768px) * 999), setting.fontsize(m));
+}
+.c-form-item {
+  padding: clamp(setting.spaces(m), calc((100vw - 768px) * 999), setting.spaces(l)) 0;
+  border-bottom: solid 1px setting.lightcolor(bg);
+  display: flex;
+  flex-direction: column;
+  &:first-of-type {
+    border-top: solid 1px setting.lightcolor(bg);
+  }
+}
+.o-box\:input {
+  order: 2;
+  width: 100%;
+  background: setting.brandcolor(dark);
+  border: solid 1px setting.lightcolor(border);
+  padding: setting.spaces(m) setting.spaces(xs);
+  resize: none;
+  @include tool.placeholder(transparent);
+  &:not(:placeholder-shown):valid {
+    border-color: setting.brandcolor(light);
+  }
+  &:not(:placeholder-shown):invalid {
+    border-color: var(--c-accent);
+  }
+  &:focus {
+    outline: 1px solid setting.brandcolor(light);
+    outline-offset: 1px;
+  }
+}
+.c-form-label {
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  gap: setting.spaces(2xs);
+  cursor: pointer;
+  &__required {
+    background: var(--c-accent);
+    padding: setting.spaces(3xs) setting.spaces(2xs);
+    font-size: setting.fontsize(xs);
+    line-height: setting.lineheight(heading);
+  }
+  &__placeholder {
+    color: setting.lightcolor(separator);
+    transition: all setting.animes(duration) setting.animes(timing);
+    transform: translateX(10px) translateY(calc(3rem + 1px)) scale(1);
+    transform-origin: 0 100%;
+    font-weight: setting.fontweight(n);
+    .c-form-item:focus-within &,
+    .o-box\:input:not(:placeholder-shown) + * > & {
+      transform: translateY(-6px) scale(0.875);
+      color: setting.brandcolor(light);
+      font-weight: setting.fontweight(m);
+    }
+  }
+}
+.o-has-icon\:form-label {
+  align-items: center;
+  gap: setting.spaces(xs);
+  font-weight: setting.fontweight(b);
+}
+.c-link,
+.c-privacy-link {
+  text-decoration: underline;
+  font-weight: setting.fontweight(m);
+  transition: all setting.animes(duration) setting.animes(timing);
+  position: relative;
+  display: inline-block;
+  &::before {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 50px;
+    min-width: 50px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    content: "";
+  }
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    opacity: setting.animes(opacity);
+  }
+}
+.c-privacy-link {
+  margin-bottom: setting.spaces(l);
+}
+.o-grid\:accept {
+  gap: setting.spaces(2xs);
+  align-items: center;
+  grid-template-columns: max-content max-content auto;
+  cursor: pointer;
+  position: relative;
+  &::before {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 50px;
+    min-width: 50px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    content: "";
+  }
+}
+.c-input-choice {
+  position: relative;
+  width: setting.fontsize(s);
+  height: setting.fontsize(s);
+  background: setting.brandcolor(dark);
+  border: solid 1px setting.lightcolor(border);
+
+  &:focus {
+    outline: 1px solid setting.brandcolor(light);
+    outline-offset: 1px;
+  }
+
+  &:checked {
+    &::after {
+      position: absolute;
+      content: "";
+    }
+  }
+
+  &\:check {
+    &:checked {
+      &::after {
+        top: calc(50% - 2px);
+        left: 50%;
+        width: setting.fontsize(xs);
+        height: calc(setting.fontsize(xs) / 2);
+        border-color: setting.lightcolor(bg);
+        border-style: solid;
+        border-width: 0 0 2px 2px;
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+  }
+}
+.c-btn\:submit {
+  background: var(--c-accent);
+  color: setting.lightcolor(bg);
+  border-color: var(--c-accent);
+  text-align: center;
+  margin-top: clamp(setting.spaces(m), calc((100vw - 768px) * 999), setting.spaces(xl));
+  &:hover,
+  &:focus {
+    background: setting.lightcolor(bg);
+    color: var(--c-accent);
+  }
+  &:focus {
+    outline-color: var(--c-accent);
+  }
+  &:disabled {
+    color: setting.lightcolor(dimmed);
+    border-color: setting.lightcolor(separator);
+    pointer-events: none;
+    background: setting.lightcolor(separator);
+  }
+}
+.o-stack {
+  &\:form {
+    margin-bottom: clamp(setting.spaces(m), calc((100vw - 768px) * 999), setting.spaces(l));
+  }
+  &\:after-form {
+    margin-top: clamp(setting.spaces(m), calc((100vw - 768px) * 999), setting.spaces(l));
+  }
+}
+.c-notice-item {
+  position: relative;
+  padding-left: setting.spaces(base);
+  font-size: setting.fontsize(xs);
+  color: setting.brandcolor(dark);
+
+  &::before {
+    position: absolute;
+    left: 0;
+    content: "※";
+  }
+}
+.c-error-message {
+  order: 3;
+  margin-top: setting.spaces(base);
+  padding: setting.spaces(s) setting.spaces(xs);
+  background: var(--c-accent);
+  font-weight: setting.fontweight(m);
+  font-size: setting.fontsize(xs);
+}

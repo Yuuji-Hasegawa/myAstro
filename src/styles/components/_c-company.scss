@@ -1,0 +1,97 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+.c-table {
+  display: flex;
+  flex-wrap: wrap;
+  border-color: var(--c-border);
+  border-style: solid;
+  border-width: 0 0px 1px 0;
+  &__thead,
+  &__tbody {
+    width: 100%;
+    padding: clamp(setting.spaces(m), calc((100vw - 768px) * 999), setting.spaces(l)) 0;
+  }
+  &__thead {
+    font-weight: setting.fontweight(m);
+    color: var(--c-dimmed);
+    max-width: max(calc(768px - 100vw) * 999, 240px);
+    border-color: var(--c-border);
+    border-style: solid;
+    border-width: 0 0px clamp(0px, calc((768px - 100vw) * 999), 1px) 0;
+    .c-table:first-of-type & {
+      padding-top: 0;
+    }
+  }
+  &__tbody {
+    max-width: max(calc((768px - 100vw) * 999), calc(100% - 240px));
+    .c-table:first-of-type & {
+      padding-top: clamp(0px, calc((768px - 100vw) * 999), setting.spaces(m));
+    }
+  }
+}
+.c-link {
+  text-decoration: underline;
+  font-weight: setting.fontweight(m);
+  transition: all setting.animes(duration) setting.animes(timing);
+  position: relative;
+  &::before {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 50px;
+    min-width: 50px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    content: "";
+  }
+  &:hover,
+  &:focus {
+    color: setting.brandcolor(base);
+    text-decoration: none;
+    opacity: setting.animes(opacity);
+  }
+}
+.c-list {
+  list-style-position: outside;
+  padding-left: setting.spaces(m);
+  list-style-type: disc;
+}
+.o-switcher\:access {
+  gap: setting.spaces(base);
+}
+.c-access-txt,
+.c-access-map {
+  width: 100%;
+}
+.c-access-txt {
+  max-width: max(calc(768px - 100vw) * 999, 33%);
+}
+.c-access-map {
+  max-width: max(calc(768px - 100vw) * 999, calc(67% - setting.spaces(base)));
+}
+.c-under-minheading {
+  font-size: setting.fontsize(m);
+  margin-bottom: setting.spaces(base);
+  font-weight: setting.fontweight(b);
+}
+.c-btn\:gmap {
+  margin-top: setting.spaces(m);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: setting.spaces(xs);
+}
+.c-map-label {
+  font-size: setting.fontsize(m);
+  font-family: setting.$font-family-en;
+}
+.c-map-icon {
+  line-height: 1;
+}
+.o-frame\:map {
+  > * {
+    filter: grayscale(100%);
+  }
+}

@@ -1,0 +1,8 @@
+---
+const { title, url, datetime, year, month, date } = Astro.props
+---
+
+<li class="o-switcher o-switcher:c-news">
+  <time datetime={datetime}>{year}.{month}.{date}</time>
+  <a class="c-news-title" href={url}>{title}</a>
+</li>

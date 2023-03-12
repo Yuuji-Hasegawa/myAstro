@@ -1,0 +1,24 @@
+---
+import "../styles/components/_c-page-title.scss"
+const { pageTitle, pageSubTitle, pageImg } = Astro.props
+const thumbImg = pageImg ? pageImg : "/img/thumb.png"
+let fileName = thumbImg.match(/\.(png|jpe?g)$/i) ? thumbImg.replace(/\.(svg|gif|png|jpe?g)$/i, "") : "/img/thumb"
+let avif = `${fileName}.avif`
+let webp = `${fileName}.webp`
+---
+
+<div class="o-cover o-cover:no-flex c-bg-cover">
+  <div class="o-cover__overlay o-cover__overlay:has-filter">
+    <picture class="o-frame o-frame:cover">
+      <source type="image/avif" srcset={avif} />
+      <source type="image/webp" srcset={webp} />
+      <img src={thumbImg} width="100%" height="100%" decoding="async" fetchpriority="high" alt="" />
+    </picture>
+  </div>
+  <div class="o-container o-container:wrapper">
+    <h1 class="c-page-title">
+      {pageTitle}
+      <span class="c-page-title__font-small">{pageSubTitle}</span>
+    </h1>
+  </div>
+</div>

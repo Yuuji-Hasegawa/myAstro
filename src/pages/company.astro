@@ -1,0 +1,109 @@
+---
+import setting from "../data/setting.json"
+import BaseLayout from "../layouts/BaseLayout.astro"
+
+import "../styles/components/_c-under.scss"
+import "../styles/components/_c-company.scss"
+const name = setting.company.name ? setting.company.name : "サンプル株式会社"
+const zip = setting.company.zip ? setting.company.zip : "000-0000"
+const address = setting.company.address ? setting.company.address : "大阪府大阪市北区xx町x-xx-xx xxビル nF"
+const birth = setting.company.birth ? setting.company.birth : "2022-00-00"
+const capital = setting.company.capital ? setting.company.capital : "xx万円"
+const owner = setting.company.owner ? setting.company.owner : "サンプル太郎"
+const tel = setting.company.tel ? setting.company.tel : "000-0000-0000"
+const mail = setting.company.mail.primary ? setting.company.mail.primary : "info@examples.com"
+const services = setting.company.service ? setting.company.service : ["サンプル事業"]
+const pageTitle = "会社情報"
+const pageSubTitle = "COMPANY"
+---
+
+<BaseLayout pageTitle={pageTitle} pageSubTitle={pageSubTitle} pageImg="/img/hero.png">
+  <div class="c-cushion">
+    <div class="o-container o-container:wrapper">
+      <h2 class="c-under-heading">会社概要</h2>
+      <dl class="c-table">
+        <dt class="c-table__thead">社名</dt>
+        <dd class="c-table__tbody">{name}</dd>
+      </dl>
+      <dl class="c-table">
+        <dt class="c-table__thead">所在地</dt>
+        <dd class="c-table__tbody">〒{zip}&ensp;{address}</dd>
+      </dl>
+      <dl class="c-table">
+        <dt class="c-table__thead">設立</dt>
+        <dd class="c-table__tbody">{birth}</dd>
+      </dl>
+      <dl class="c-table">
+        <dt class="c-table__thead">資本金</dt>
+        <dd class="c-table__tbody">{capital}</dd>
+      </dl>
+      <dl class="c-table">
+        <dt class="c-table__thead">代表者</dt>
+        <dd class="c-table__tbody">{owner}</dd>
+      </dl>
+      <dl class="c-table">
+        <dt class="c-table__thead">電話番号</dt>
+        <dd class="c-table__tbody">
+          <a class="c-link" href={`tel:${tel}`} target="_blank" rel="noopener">{tel}</a>
+        </dd>
+      </dl>
+      <dl class="c-table">
+        <dt class="c-table__thead">メールアドレス</dt>
+        <dd class="c-table__tbody">
+          <a class="c-link" href={`mailto:${mail}`} target="_blank" rel="noopener">{mail}</a>
+        </dd>
+      </dl>
+      <dl class="c-table">
+        <dt class="c-table__thead">事業内容</dt>
+        <dd class="c-table__tbody">
+          <ul class="c-list">
+            {services.map((item) => <li>{item}</li>)}
+            <li>その他、上記に係る業務</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+  </div>
+  <div class="c-cushion">
+    <div class="o-container o-container:wrapper">
+      <h2 class="c-under-heading">アクセス</h2>
+      <div class="o-switcher o-switcher:access">
+        <div class="c-access-txt">
+          <h3 class="c-under-minheading">最寄駅</h3>
+          <ul class="c-list">
+            <li>xx線「xx駅（xx番出口）」より徒歩x分</li>
+            <li>xx線「xx駅」より徒歩x分</li>
+          </ul>
+          <a href="https://goo.gl/maps/ZFEdHLTWoGu9Wx847" class="c-btn c-btn:gmap" target="_blank" rel="noopener">
+            <span class="c-map-label">Google Maps</span>
+            <span class="c-map-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                ><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                  d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"
+                  fill="currentColor"></path></svg
+              >
+            </span>
+          </a>
+        </div>
+        <div class="c-access-map">
+          <div class="o-frame o-frame:map">
+            <iframe
+              id="myMap"
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+              data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3279.992643865924!2d135.49217391523234!3d34.70536548043322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e68e55df1f63%3A0xd58f533a3a832867!2z44CSNTMwLTAwMTEg5aSn6Ziq5bqc5aSn6Ziq5biC5YyX5Yy65aSn5rex55S677yT4oiS77yR!5e0!3m2!1sja!2sjp!4v1656471426814!5m2!1sja!2sjp"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              width="100%"
+              height="100%"></iframe>
+          </div>
+        </div>
+        <script>
+          import "../scripts/mapLazy.js"
+        </script>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

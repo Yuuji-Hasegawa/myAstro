@@ -1,0 +1,66 @@
+---
+import FollowSns from "../components/FollowSns.astro"
+---
+
+<details id="sp-nav">
+  <summary class="c-menu-btn">
+    <span class="c-menu-btn__inner"></span>
+  </summary>
+  <div id="sidebar" class="c-sidebar">
+    <button class="c-menu-btn c-menu-btn--sidebar" type="button" aria-label="menu close">
+      <span class="c-menu-btn__inner"></span>
+    </button>
+    <nav class="c-sp-nav">
+      <ul class="o-switcher o-switcher:sp-nav">
+        <li class="c-nav-item c-nav-item:sp-nav">
+          <a href="/" class="c-nav-link c-nav-link:sp-nav">
+            ホーム
+            <span class="c-nav-link__en">HOME</span>
+          </a>
+        </li>
+        <li class="c-nav-item c-nav-item:sp-nav">
+          <a href="#" class="c-nav-link c-nav-link:sp-nav"
+            >実績紹介
+            <span class="c-nav-link__en">EXAMPLES</span>
+          </a>
+        </li>
+        <li class="c-nav-item c-nav-item:sp-nav">
+          <a href="/about-us" class="c-nav-link c-nav-link:sp-nav"
+            >私たちについて
+            <span class="c-nav-link__en">ABOUT US</span>
+          </a>
+        </li>
+        <li class="c-nav-item c-nav-item:sp-nav">
+          <a href="/services" class="c-nav-link c-nav-link:sp-nav"
+            >サービス
+            <span class="c-nav-link__en">SERVICES</span>
+          </a>
+        </li>
+        <li class="c-nav-item c-nav-item:sp-nav">
+          <a href="/company" class="c-nav-link c-nav-link:sp-nav"
+            >会社情報
+            <span class="c-nav-link__en">COMPANY</span>
+          </a>
+        </li>
+        <li class="c-nav-item c-nav-item:sp-nav">
+          <a href="/news" class="c-nav-link c-nav-link:sp-nav"
+            >ニュース
+            <span class="c-nav-link__en">NEWS</span>
+          </a>
+        </li>
+        <li class="c-nav-item c-nav-item:sp-nav">
+          <a href="#" class="c-nav-link c-nav-link:sp-nav"
+            >記事・トピック
+            <span class="c-nav-link__en">STORIES</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <p class="c-small-note c-small-note:sp-nav">お見積り、ご依頼、ご相談など、お気軽にお問い合わせください。</p>
+    <a href="/inquiry" class="c-btn c-btn:accent">お問い合わせ</a>
+    <div class="o-stack o-stack:sp-follow">
+      <p class="c-follow-heading">FOLLOW US</p>
+      <FollowSns />
+    </div>
+  </div>
+</details>

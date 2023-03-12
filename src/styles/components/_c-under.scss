@@ -1,0 +1,22 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+.c-under-heading {
+  font-size: setting.fontsize(l);
+  font-weight: setting.fontweight(b);
+  line-height: setting.lineheight(heading);
+  position: relative;
+  padding-left: setting.spaces(m);
+  &:before {
+    content: "";
+    height: calc(100% - setting.spaces(3xs));
+    width: 4px;
+    background: setting.brandcolor(base);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  & + * {
+    margin-top: setting.spaces(l);
+  }
+}

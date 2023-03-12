@@ -26,14 +26,6 @@
     outline: 1px solid var(--c-txt);
     outline-offset: 1px;
   }
-/*
-  &:disabled {
-    color: var(--c-dimmed);
-    pointer-events: none;
-    background: var(--c-overlay);
-  }
-*/
-
   &\:accent {
     background: var(--c-accent);
     color: setting.lightcolor(bg);
@@ -47,19 +39,4 @@
       outline-color: var(--c-accent);
     }
   }
-
-  /*
-
-  &\:ghost {
-    background: transparent;
-    border: solid 1px;
-
-    &:hover,
-    &:focus {
-      color: setting.lightcolor(dimmed);
-      background: setting.lightcolor(bg);
-    }
-  }
-
-  */
 }

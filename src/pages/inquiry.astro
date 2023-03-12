@@ -1,0 +1,116 @@
+---
+import setting from "../data/setting.json"
+import BaseLayout from "../layouts/BaseLayout.astro"
+
+import "../styles/components/_c-inquiry.scss"
+const mail = setting.company.mail.primary ? setting.company.mail.primary : "info@examples.com"
+const pageTitle = "お問い合わせ"
+const pageSubTitle = "INQUIRY"
+---
+
+<BaseLayout pageTitle={pageTitle} pageSubTitle={pageSubTitle} pageImg="/img/hero.png">
+  <section class="c-cushion">
+    <div class="o-container o-container:content">
+      <p class="c-pre-form">
+        私たちにご興味を持っていただきありがとうございます。<br />
+        ご相談・ご質問は、こちらからお気軽にお問い合わせください。
+      </p>
+    </div>
+  </section>
+  <div class="c-common-cta" slot="mailForm">
+    <div class="o-container o-container:content">
+      <form action="#" method="post" aria-label="Contact form">
+        <ul class="o-stack o-stack:form">
+          <li class="c-form-item">
+            <input
+              class="o-box o-box:input"
+              type="text"
+              id="name"
+              name="name"
+              placeholder="例）お名前"
+              autocomplete="name"
+              autocorrect="off"
+              autocapitalize="none"
+              required
+            />
+            <label class="c-form-label" for="name">
+              <span class="o-has-icon o-has-icon:form-label">
+                お名前<span class="c-form-label__required">必須</span>
+              </span><span class="c-form-label__placeholder">例）お名前</span>
+            </label>
+          </li>
+          <li class="c-form-item">
+            <input
+              class="o-box o-box:input"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="例）info@examples.com"
+              pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$"
+              autocomplete="email"
+              autocorrect="off"
+              autocapitalize="none"
+              inputmode="email"
+              required
+            />
+            <label class="c-form-label" for="email">
+              <span class="o-has-icon o-has-icon:form-label">
+                メールアドレス<span class="c-form-label__required">必須</span>
+              </span><span class="c-form-label__placeholder">例）info@examples.com</span>
+            </label>
+          </li>
+          <li class="c-form-item">
+            <input
+              class="o-box o-box:input"
+              type="tel"
+              id="tel"
+              name="tel"
+              placeholder="例）000-0000-0000"
+              pattern="\\d{2,4}-?\\d{2,4}-?\\d{3,4}"
+              autocomplete="tel"
+              autocorrect="off"
+              autocapitalize="none"
+              inputmode="tel"
+            />
+            <label class="c-form-label" for="tel">
+              <span class="o-has-icon o-has-icon:form-label">お電話番号</span><span class="c-form-label__placeholder"
+                >例）000-0000-0000</span
+              >
+            </label>
+          </li>
+          <li class="c-form-item">
+            <textarea
+              class="o-box o-box:input"
+              name="message"
+              id="message"
+              cols="30"
+              rows="10"
+              placeholder="お気軽にご入力ください"></textarea>
+            <label class="c-form-label" for="message">
+              <span class="o-has-icon o-has-icon:form-label">お問い合わせ内容</span><span
+                class="c-form-label__placeholder">お気軽にご入力ください</span
+              >
+            </label>
+          </li>
+        </ul>
+        <a class="c-privacy-link" href="/privacy-policy/" target="_blank" rel="noopener">プライバシーポリシー</a>
+        <label class="o-grid o-grid:accept">
+          <input class="c-input-choice c-input-choice:check" type="checkbox" name="acceptance" value="1" required />
+          プライバシーポリシーに同意する
+        </label>
+        <button class="c-btn c-btn:submit" type="submit" disabled="" aria-disabled="true">送信する</button>
+      </form>
+      <script>
+        import "../scripts/form.js"
+      </script>
+      <ul class="o-stack o-stack:after-form">
+        <li class="c-notice-item">調査等のため、返信にお時間を頂くことがございます。予めご了承ください。</li>
+        <li class="c-notice-item">
+          万が一、一週間経っても返信がない場合は大変お手数ですが、
+          <a class="c-link" href={`mailto:${mail}`} target="_blank" rel="noopener">{mail}</a>
+          までご連絡ください。
+        </li>
+      </ul>
+    </div>
+  </div>
+</BaseLayout>
