@@ -1,0 +1,118 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+.c-bg-cover {
+  &\:p-about-value {
+    background: var(--c-overlay);
+  }
+}
+.o-cover__overlay\:has-bg {
+  z-index: -1;
+}
+.o-has-icon {
+  &\:p-aboutus-heading {
+    width: 100%;
+    align-items: center;
+    gap: clamp(setting.spaces(base), calc((100vw - 768px) * 999), setting.spaces(m));
+    font-weight: setting.fontweight(b);
+    margin-bottom: clamp(setting.spaces(base), calc((100vw - 768px) * 999), setting.spaces(m));
+  }
+  &\:mission {
+    justify-content: center;
+  }
+}
+.p-aboutus-mission-lead,
+.p-aboutus-vision-lead {
+  line-height: setting.lineheight(heading);
+  font-weight: setting.fontweight(b);
+}
+.p-aboutus-mission-lead {
+  color: var(--c-accent);
+  font-size: clamp(setting.fontsize(l), calc((100vw - 768px) * 999), setting.fontsize(xl));
+  margin-bottom: clamp(setting.spaces(l), calc((100vw - 768px) * 999), setting.spaces(xl));
+  max-width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  @include tool.min-screen(768px) {
+    text-align: center;
+  }
+}
+.c-under-txts\:mission {
+  max-width: 40rem;
+  font-size: setting.fontsize(m);
+  font-weight: setting.fontweight(m);
+  margin-left: auto;
+  margin-right: auto;
+
+  @include tool.min-screen(768px) {
+    text-align: center;
+  }
+}
+.p-aboutus-mission-sublead {
+  font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(l));
+  font-weight: setting.fontweight(b);
+  @include tool.min-screen(768px) {
+    text-align: center;
+  }
+}
+
+.p-aboutus-heading-label {
+  font-size: clamp(setting.fontsize(l), calc((100vw - 768px) * 999), setting.fontsize(2xl));
+  font-family: setting.$font-family-en;
+}
+.c-logo\:p-aboutus-heading-icon {
+  line-height: 1;
+  font-size: clamp(setting.fontsize(l), calc((100vw - 768px) * 999), setting.fontsize(2xl));
+}
+.p-aboutus-vision-lead {
+  color: setting.brandcolor(base);
+  font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(l));
+  margin-bottom: clamp(setting.spaces(base), calc((100vw - 768px) * 999), setting.spaces(m));
+  & + p {
+    font-size: setting.fontsize(m);
+    font-weight: setting.fontweight(m);
+  }
+}
+.o-switcher {
+  &\:p-aboutus-vision {
+    gap: setting.spaces(l);
+  }
+  &\:value-list {
+    gap: setting.spaces(xl);
+  }
+}
+.p-aboutus-vision-txt,
+.p-aboutus-vision-pict,
+.c-value-item {
+  width: 100%;
+}
+.p-aboutus-vision-txt {
+  order: 2;
+  max-width: max(calc(768px - 100vw) * 999, 57%);
+  margin-left: auto;
+}
+.p-aboutus-vision-pict {
+  max-width: max(calc(768px - 100vw) * 999, calc(43% - setting.spaces(l)));
+}
+.c-value-item {
+  max-width: max(calc(768px - 100vw) * 999, calc((100% - ceil(setting.spaces(xl) * 2)) / 3));
+  &__title {
+    display: flex;
+    flex-direction: column;
+    line-height: setting.lineheight(heading);
+    gap: setting.spaces(2xs);
+    font-weight: setting.fontweight(b);
+    &__font-large {
+      font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(l));
+    }
+    &__font-small {
+      font-size: clamp(setting.fontsize(s), calc((100vw - 768px) * 999), setting.fontsize(m));
+      font-family: setting.$font-family-en;
+      color: setting.brandcolor(base);
+    }
+  }
+  &__content {
+    font-weight: setting.fontweight(m);
+    margin-top: setting.spaces(base);
+    line-height: setting.lineheight(body);
+  }
+}

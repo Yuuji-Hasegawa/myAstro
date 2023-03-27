@@ -1,10 +1,12 @@
 ---
 import PcNav from "../components/PcNav.astro"
 import SpNav from "../components/SpNav.astro"
+import setting from "../data/setting.json"
+const siteTitle = setting.site.title ? setting.site.title : "サンプルサイト"
 ---
 
 <header class="o-container o-container:header">
-  <a class="c-logo c-logo:header" href="/" aria-label="Go to Home">
+  <a class="c-logo c-logo:header" href="/" aria-label="Go to Home" title={siteTitle}>
     <svg width="25" height="32" viewBox="0 0 25 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <style>
         @media (prefers-color-scheme: dark) {

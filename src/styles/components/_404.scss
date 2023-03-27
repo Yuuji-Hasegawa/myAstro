@@ -1,0 +1,5 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+.c-btn\:notfound {
+  margin-top: setting.spaces(m);
+}

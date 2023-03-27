@@ -3,19 +3,41 @@ import BreadCrumb from "../components/BreadCrumb.astro"
 import CommonCta from "../components/CommonCta.astro"
 import Footer from "../components/Footer.astro"
 import Header from "../components/Header.astro"
+import JsonLd from "../components/JsonLd.astro"
 import Meta from "../components/meta.astro"
 import PageTitle from "../components/PageTitle.astro"
+import PostHeading from "../components/PostHeading.astro"
 import setting from "../data/setting.json"
 
 import "../styles/style.scss"
-const { pageTitle, pageSubTitle, pageImg, pageDesc, pageKeywords } = Astro.props
+const {
+  pageTitle,
+  pageSubTitle,
+  pageImg,
+  pageDesc,
+  pageKeywords,
+  Heading,
+  SubHeading,
+  pageType,
+  pubDate,
+  updateDate,
+  authorName,
+  authorFb,
+  authorTw,
+  authorInstagram,
+  Website,
+  postCategory,
+} = Astro.props
 const pagePath = Astro.url.pathname
-let ogpType = ""
-if (pagePath.match("/")) {
-  ogpType = "website"
+const ogpType = pageType ? pageType : "website"
+/*
+let isPost = ""
+if (pagePath.match(/news\/\D+/gm) || pagePath.match(/examples\/\D+/gm) || pagePath.match(/posts\/\D+/gm)) {
+  isPost = "true"
 } else {
-  ogpType = "article"
+  isPost = ""
 }
+*/
 const lang = setting.site.lang ? setting.site.lang : "ja"
 const h_prefix = `og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# ${ogpType}: http://ogp.me/ns/${ogpType}#`
 ---
@@ -39,7 +61,7 @@ const h_prefix = `og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# ${ogpType}: htt
       })(window, document, "script", "dataLayer", "GTM-XXXXXXX")
     </script>
     <!-- End Google Tag Manager -->
-    <Meta pageTitle={pageTitle} pageImg={pageImg} pageDesc={pageDesc} pageKeywords={pageKeywords} />
+    <Meta pageTitle={pageTitle} pageImg={pageImg} pageDesc={pageDesc} pageKeywords={pageKeywords} ogpType={ogpType} />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -53,7 +75,12 @@ const h_prefix = `og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# ${ogpType}: htt
     <!-- End Google Tag Manager (noscript) -->
     <Header />
     <main>
-      {pagePath !== "/" && <PageTitle pageTitle={pageTitle} pageSubTitle={pageSubTitle} pageImg={pageImg} />}
+      {
+        ogpType === "website" && pagePath !== "/" && (
+          <PageTitle pageTitle={pageTitle} pageSubTitle={pageSubTitle} pageImg={pageImg} />
+        )
+      }
+      {ogpType === "article" && <PostHeading Heading={Heading} SubHeading={SubHeading} />}
       <slot />
       {pagePath !== "/" && <BreadCrumb pageTitle={pageTitle} />}
       {pagePath !== "/inquiry" && <CommonCta />}
@@ -63,6 +90,19 @@ const h_prefix = `og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# ${ogpType}: htt
     <script>
       import "../scripts/app.js"
     </script>
-    <script type="application/ld+json"></script>
+    <JsonLd
+      pageTitle={pageTitle}
+      pageImg={pageImg}
+      pageDesc={pageDesc}
+      ogpType={ogpType}
+      pubDate={pubDate}
+      updateDate={updateDate}
+      authorName={authorName}
+      authorFb={authorFb}
+      authorTw={authorTw}
+      authorInstagram={authorInstagram}
+      authorWebsite={Website}
+      postCategory={postCategory}
+    />
   </body>
 </html>

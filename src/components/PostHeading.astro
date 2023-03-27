@@ -1,0 +1,20 @@
+---
+import "../styles/components/_c-page-title.scss"
+const { Heading, SubHeading } = Astro.props
+---
+
+<div class="o-cover o-cover:no-flex c-bg-cover">
+  <div class="o-cover__overlay o-cover__overlay:has-filter">
+    <picture class="o-frame o-frame:cover">
+      <source type="image/avif" srcset="/img/thumb.avif" />
+      <source type="image/webp" srcset="/img/thumb.webp" />
+      <img src="/img/thumb.png" width="100%" height="100%" decoding="async" fetchpriority="high" alt="" />
+    </picture>
+  </div>
+  <div class="o-container o-container:wrapper">
+    <p class="c-page-title">
+      {Heading}
+      <span class="c-page-title__font-small">{SubHeading}</span>
+    </p>
+  </div>
+</div>

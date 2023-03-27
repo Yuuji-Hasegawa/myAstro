@@ -116,10 +116,6 @@
   margin-right: auto;
   max-width: max-content;
 }
-.o-switcher\:p-front-posts {
-  margin-bottom: clamp(setting.spaces(l), calc((100vw - 768px) * 999), setting.spaces(xl));
-  gap: setting.spaces(m);
-}
 .o-has-icon\:p-front-service {
   justify-content: center;
   align-items: center;

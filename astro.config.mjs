@@ -4,6 +4,8 @@ import { defineConfig } from 'astro/config';
 import compress from "astro-compress";
 import partytown from "@astrojs/partytown";
 
+import sitemap from "./sitemaps/sitemaps";
+
 // https://astro.build/config
 export default defineConfig({
   /*
@@ -19,6 +21,7 @@ export default defineConfig({
   },
   */
   integrations: [
+    sitemap(),
     partytown({
       // Adds dataLayer.push as a forwarding-event.
       config: {

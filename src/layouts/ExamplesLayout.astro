@@ -1,0 +1,101 @@
+---
+import BaseLayout from "./BaseLayout.astro"
+import ExamplesPosts from "../components/ExamplesPosts.astro"
+import setting from "../data/setting.json"
+
+import "../styles/components/_examples-post.scss"
+import "../styles/components/_post-entry.scss"
+const { frontmatter } = Astro.props
+const pageType = "article"
+const pageTitle = frontmatter.title
+const Heading = "実績紹介"
+const SubHeading = "EXAMPLES"
+const desc = frontmatter.description ? frontmatter.description : ""
+const keywords = frontmatter.keywords ? frontmatter.keywords.join(",") : ""
+const thumbImg = frontmatter.image ? frontmatter.image : "/img/thumb.png"
+let fileName = thumbImg.match(/\.(png|jpe?g)$/i) ? thumbImg.replace(/\.(svg|gif|png|jpe?g)$/i, "") : "/img/thumb"
+let avif = `${fileName}.avif`
+let webp = `${fileName}.webp`
+const client = frontmatter.client ? frontmatter.client : ""
+const category = frontmatter.cat ? frontmatter.cat : ""
+const baseUrl = setting.site.url
+const url = new URL(Astro.url.pathname, baseUrl).toString()
+const pathName = Astro.url.pathname
+const allExamples = await Astro.glob("../pages/examples/*.md")
+const relatedExamples = allExamples.filter((post) => post.url !== pathName && post.frontmatter.cat.includes(category))
+const randomLot = (array, num) => {
+  let newArray = []
+
+  while (newArray.length < num && array.length > 0) {
+    const randomIndex = Math.floor(Math.random() * array.length)
+    newArray.push(array[randomIndex])
+    array.splice(randomIndex, 1)
+  }
+
+  return newArray
+}
+const randomExamples = randomLot(relatedExamples, 6)
+---
+
+<BaseLayout
+  Heading={Heading}
+  SubHeading={SubHeading}
+  pageTitle={pageTitle}
+  pageImg={thumbImg}
+  pageDesc={desc}
+  pageKeywords={keywords}
+  pageType={pageType}
+  pubDate={frontmatter.date}
+  updateDate={frontmatter.update}
+>
+  <section class="c-cushion">
+    <div class="o-container o-container:content">
+      <h1 class="c-example-heading">{pageTitle}</h1>
+      <div class="c-example-client">{client}</div>
+      <div class="c-insert-thumb">
+        <picture class="o-frame">
+          <source type="image/avif" srcset={avif} />
+          <source type="image/webp" srcset={webp} />
+          <img src={thumbImg} width="100%" height="100%" loading="lazy" decoding="async" fetchpriority="low" alt="" />
+        </picture>
+      </div>
+      <article class="c-post-entry">
+        <slot />
+      </article>
+      <h3 class="c-min-heading c-min-heading:share">シェア・共有</h3>
+      <div class="c-input-copy">
+        <input id="shareURL" class="c-share-input" type="text" value={url} readonly="true" />
+        <button id="shareBtn" class="c-share-btn">コピー</button>
+      </div>
+      <div class="c-examples-bottom">
+        <h3 class="c-examples-bottom-heading">SUMMARY</h3>
+        <dl class="o-stack o-stack:examples-bottom">
+          <dt class="c-examples-bottom-title">CLIENT</dt>
+          <dd class="c-examples-bottom-content">{client}</dd>
+          <dt class="c-examples-bottom-title">CATEGORY</dt>
+          <dd class="c-examples-bottom-content"><a class="c-link" href={`/examples-cat/${category}`}>{category}</a></dd>
+        </dl>
+      </div>
+    </div>
+    <div class="o-container o-container:wrapper">
+      <ul class="o-switcher o-switcher:c-examples-list">
+        {
+          randomExamples.length > 0 &&
+            randomExamples.map((post) => (
+              <ExamplesPosts
+                url={post.url}
+                title={post.frontmatter.title}
+                img={post.frontmatter.date}
+                client={post.frontmatter.client}
+                cat={post.frontmatter.cat}
+              />
+            ))
+        }
+      </ul>
+    </div>
+    <a href="/examples" class="c-btn c-btn:to-list">実績紹介 一覧</a>
+    <script>
+      import "../scripts/urlCopy.js"
+    </script>
+  </section>
+</BaseLayout>

@@ -1,10 +1,17 @@
 ---
+import ExamplesPosts from "../components/ExamplesPosts.astro"
+import NewsPosts from "../components/NewsPosts.astro"
+import Posts from "../components/Posts.astro"
 import BaseLayout from "../layouts/BaseLayout.astro"
 
 import "../styles/components/_front-page.scss"
-import "../styles/components/_news.scss"
-import "../styles/components/_posts.scss"
-import "../styles/components/_examples.scss"
+
+const allNews = await Astro.glob("../pages/news/*.md")
+allNews.sort((a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date))
+const allExamples = await Astro.glob("../pages/examples/*.md")
+allExamples.sort((a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date))
+const allPosts = await Astro.glob("../pages/posts/*.md")
+allPosts.sort((a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date))
 ---
 
 <BaseLayout>
@@ -37,141 +44,22 @@ import "../styles/components/_examples.scss"
         <span class="p-front-heading__en">EXAMPLES</span>
         <span class="p-front-heading__small">実績紹介</span>
       </h2>
-      <ul class="o-switcher o-switcher:p-front-posts">
-        <li class="c-examples-item">
-          <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
-            <picture class="o-frame o-frame:square">
-              <source type="image/avif" srcset="/img/thumb.avif" />
-              <source type="image/webp" srcset="/img/thumb.webp" />
-              <img
-                src="/img/thumb.png"
-                width="100%"
-                height="100%"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                alt=""
+      <ul class="o-switcher o-switcher:c-examples-list">
+        {
+          allExamples
+            .slice(0, 6)
+            .map((post) => (
+              <ExamplesPosts
+                url={post.url}
+                title={post.frontmatter.title}
+                img={post.frontmatter.date}
+                client={post.frontmatter.client}
+                cat={post.frontmatter.cat}
               />
-            </picture>
-            <div class="o-stack o-stack:item-inner">
-              <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
-              <h3 class="c-examples-title">タイトル</h3>
-              <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
-            </div>
-          </a>
-        </li>
-        <li class="c-examples-item">
-          <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
-            <picture class="o-frame o-frame:square">
-              <source type="image/avif" srcset="/img/thumb.avif" />
-              <source type="image/webp" srcset="/img/thumb.webp" />
-              <img
-                src="/img/thumb.png"
-                width="100%"
-                height="100%"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                alt=""
-              />
-            </picture>
-            <div class="o-stack o-stack:item-inner">
-              <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
-              <h3 class="c-examples-title">タイトル</h3>
-              <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
-            </div>
-          </a>
-        </li>
-        <li class="c-examples-item">
-          <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
-            <picture class="o-frame o-frame:square">
-              <source type="image/avif" srcset="/img/thumb.avif" />
-              <source type="image/webp" srcset="/img/thumb.webp" />
-              <img
-                src="/img/thumb.png"
-                width="100%"
-                height="100%"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                alt=""
-              />
-            </picture>
-            <div class="o-stack o-stack:item-inner">
-              <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
-              <h3 class="c-examples-title">タイトル</h3>
-              <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
-            </div>
-          </a>
-        </li>
-        <li class="c-examples-item">
-          <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
-            <picture class="o-frame o-frame:square">
-              <source type="image/avif" srcset="/img/thumb.avif" />
-              <source type="image/webp" srcset="/img/thumb.webp" />
-              <img
-                src="/img/thumb.png"
-                width="100%"
-                height="100%"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                alt=""
-              />
-            </picture>
-            <div class="o-stack o-stack:item-inner">
-              <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
-              <h3 class="c-examples-title">タイトル</h3>
-              <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
-            </div>
-          </a>
-        </li>
-        <li class="c-examples-item">
-          <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
-            <picture class="o-frame o-frame:square">
-              <source type="image/avif" srcset="/img/thumb.avif" />
-              <source type="image/webp" srcset="/img/thumb.webp" />
-              <img
-                src="/img/thumb.png"
-                width="100%"
-                height="100%"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                alt=""
-              />
-            </picture>
-            <div class="o-stack o-stack:item-inner">
-              <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
-              <h3 class="c-examples-title">タイトル</h3>
-              <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
-            </div>
-          </a>
-        </li>
-        <li class="c-examples-item">
-          <a class="o-stack o-stack:examples" href="#" aria-label="go to example" title="実績タイトル">
-            <picture class="o-frame o-frame:square">
-              <source type="image/avif" srcset="/img/thumb.avif" />
-              <source type="image/webp" srcset="/img/thumb.webp" />
-              <img
-                src="/img/thumb.png"
-                width="100%"
-                height="100%"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                alt=""
-              />
-            </picture>
-            <div class="o-stack o-stack:item-inner">
-              <span class="c-examples-label c-examples-label:name">お客様名/業種</span>
-              <h3 class="c-examples-title">タイトル</h3>
-              <span class="c-examples-label c-examples-label:cat">カテゴリー</span>
-            </div>
-          </a>
-        </li>
+            ))
+        }
       </ul>
-      <a href="#" class="c-btn c-btn:wide">実績一覧</a>
+      <a href="/examples" class="c-btn c-btn:wide">実績一覧</a>
     </div>
   </section>
   <section class="o-cover o-cover:no-flex c-bg-cover">
@@ -280,7 +168,7 @@ import "../styles/components/_examples.scss"
           </p>
         </div>
       </div>
-      <a href="#" class="c-btn c-btn:wide">サービス一覧</a>
+      <a href="/services" class="c-btn c-btn:wide">サービス一覧</a>
     </div>
   </section>
   <section class="c-bg-cover p-front-news">
@@ -291,26 +179,11 @@ import "../styles/components/_examples.scss"
       </h2>
       <div class="p-front-press p-front-press:news">
         <ul class="o-stack o-stack:c-news">
-          <li class="o-switcher o-switcher:c-news">
-            <time datetime="2022-00-00">2022.00.00</time>
-            <a class="c-news-title" href="#">お知らせ 9</a>
-          </li>
-          <li class="o-switcher o-switcher:c-news">
-            <time datetime="2022-00-00">2022.00.00</time>
-            <a class="c-news-title" href="#">お知らせ 8</a>
-          </li>
-          <li class="o-switcher o-switcher:c-news">
-            <time datetime="2022-00-00">2022.00.00</time>
-            <a class="c-news-title" href="#">お知らせ 7</a>
-          </li>
-          <li class="o-switcher o-switcher:c-news">
-            <time datetime="2022-00-00">2022.00.00</time>
-            <a class="c-news-title" href="#">お知らせ 6</a>
-          </li>
-          <li class="o-switcher o-switcher:c-news">
-            <time datetime="2022-00-00">2022.00.00</time>
-            <a class="c-news-title" href="#">お知らせ 5</a>
-          </li>
+          {
+            allNews
+              .slice(0, 5)
+              .map((post) => <NewsPosts url={post.url} title={post.frontmatter.title} date={post.frontmatter.date} />)
+          }
         </ul>
       </div>
       <a href="/news" class="c-btn c-btn:wide">ニュース一覧</a>
@@ -322,203 +195,24 @@ import "../styles/components/_examples.scss"
         <span class="p-front-heading__en">STORIES</span>
         <span class="p-front-heading__small">記事・トピック</span>
       </h2>
-      <ul class="o-switcher o-switcher:p-front-posts">
-        <li class="c-posts-item">
-          <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
-            <picture class="o-frame">
-              <source type="image/avif" srcset="/img/thumb.avif" />
-              <source type="image/webp" srcset="/img/thumb.webp" />
-              <img
-                src="/img/thumb.png"
-                width="100%"
-                height="100%"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                alt=""
+      <ul class="o-switcher o-switcher:c-posts-list">
+        {
+          allPosts
+            .slice(0, 6)
+            .map((post) => (
+              <Posts
+                url={post.url}
+                title={post.frontmatter.title}
+                img={post.frontmatter.date}
+                author={post.frontmatter.author}
+                profile={post.frontmatter.profile}
+                cat={post.frontmatter.cat}
+                date={post.frontmatter.date}
               />
-            </picture>
-            <div class="o-grid o-grid:posts">
-              <picture class="o-frame o-frame:square">
-                <source type="image/avif" srcset="/img/profile.avif" />
-                <source type="image/webp" srcset="/img/profile.webp" />
-                <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-              </picture>
-              <div class="o-stack o-stack:posts-bottom">
-                <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
-                <span class="c-posts-trim c-posts-trim:author">名前</span>
-                <div class="o-cluster o-cluster:posts-bottom">
-                  <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
-                </div>
-              </div>
-            </div>
-          </a>
-        </li>
-        <li class="c-posts-item">
-          <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
-            <picture class="o-frame">
-              <source type="image/avif" srcset="/img/thumb.avif" />
-              <source type="image/webp" srcset="/img/thumb.webp" />
-              <img
-                src="/img/thumb.png"
-                width="100%"
-                height="100%"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                alt=""
-              />
-            </picture>
-            <div class="o-grid o-grid:posts">
-              <picture class="o-frame o-frame:square">
-                <source type="image/avif" srcset="/img/profile.avif" />
-                <source type="image/webp" srcset="/img/profile.webp" />
-                <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-              </picture>
-              <div class="o-stack o-stack:posts-bottom">
-                <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
-                <span class="c-posts-trim c-posts-trim:author">名前</span>
-                <div class="o-cluster o-cluster:posts-bottom">
-                  <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
-                </div>
-              </div>
-            </div>
-          </a>
-        </li>
-        <li class="c-posts-item">
-          <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
-            <picture class="o-frame">
-              <source type="image/avif" srcset="/img/thumb.avif" />
-              <source type="image/webp" srcset="/img/thumb.webp" />
-              <img
-                src="/img/thumb.png"
-                width="100%"
-                height="100%"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                alt=""
-              />
-            </picture>
-            <div class="o-grid o-grid:posts">
-              <picture class="o-frame o-frame:square">
-                <source type="image/avif" srcset="/img/profile.avif" />
-                <source type="image/webp" srcset="/img/profile.webp" />
-                <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-              </picture>
-              <div class="o-stack o-stack:posts-bottom">
-                <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
-                <span class="c-posts-trim c-posts-trim:author">名前</span>
-                <div class="o-cluster o-cluster:posts-bottom">
-                  <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
-                </div>
-              </div>
-            </div>
-          </a>
-        </li>
-        <li class="c-posts-item">
-          <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
-            <picture class="o-frame">
-              <source type="image/avif" srcset="/img/thumb.avif" />
-              <source type="image/webp" srcset="/img/thumb.webp" />
-              <img
-                src="/img/thumb.png"
-                width="100%"
-                height="100%"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                alt=""
-              />
-            </picture>
-            <div class="o-grid o-grid:posts">
-              <picture class="o-frame o-frame:square">
-                <source type="image/avif" srcset="/img/profile.avif" />
-                <source type="image/webp" srcset="/img/profile.webp" />
-                <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-              </picture>
-              <div class="o-stack o-stack:posts-bottom">
-                <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
-                <span class="c-posts-trim c-posts-trim:author">名前</span>
-                <div class="o-cluster o-cluster:posts-bottom">
-                  <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
-                </div>
-              </div>
-            </div>
-          </a>
-        </li>
-        <li class="c-posts-item">
-          <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
-            <picture class="o-frame">
-              <source type="image/avif" srcset="/img/thumb.avif" />
-              <source type="image/webp" srcset="/img/thumb.webp" />
-              <img
-                src="/img/thumb.png"
-                width="100%"
-                height="100%"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                alt=""
-              />
-            </picture>
-            <div class="o-grid o-grid:posts">
-              <picture class="o-frame o-frame:square">
-                <source type="image/avif" srcset="/img/profile.avif" />
-                <source type="image/webp" srcset="/img/profile.webp" />
-                <img src="/img/profile.png" loading="lazy" decoding="async" alt="" width="100%" height="100%" />
-              </picture>
-              <div class="o-stack o-stack:posts-bottom">
-                <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
-                <span class="c-posts-trim c-posts-trim:author">名前</span>
-                <div class="o-cluster o-cluster:posts-bottom">
-                  <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
-                </div>
-              </div>
-            </div>
-          </a>
-        </li>
-        <li class="c-posts-item">
-          <a class="o-stack o-stack:posts" href="#" aria-label="go to post" title="コンテンツタイトル">
-            <picture class="o-frame">
-              <source type="image/avif" srcset="/img/thumb.avif" />
-              <source type="image/webp" srcset="/img/thumb.webp" />
-              <img
-                src="/img/thumb.png"
-                width="100%"
-                height="100%"
-                loading="lazy"
-                decoding="async"
-                fetchpriority="low"
-                alt=""
-              />
-            </picture>
-            <div class="o-grid o-grid:posts">
-              <picture class="o-frame o-frame:square">
-                <source type="image/avif" srcset="/img/profile.avif" />
-                <source type="image/webp" srcset="/img/profile.webp" />
-                <img
-                  src="/img/profile.png"
-                  width="100%"
-                  height="100%"
-                  loading="lazy"
-                  decoding="async"
-                  fetchpriority="low"
-                  alt=""
-                />
-              </picture>
-              <div class="o-stack o-stack:posts-bottom">
-                <h3 class="c-posts-trim c-posts-trim:title">Hello world!</h3>
-                <span class="c-posts-trim c-posts-trim:author">名前</span>
-                <div class="o-cluster o-cluster:posts-bottom">
-                  <span>未分類</span>|<time class="c-posts-date" datetime="2022-00-00">約nヶ月前</time>
-                </div>
-              </div>
-            </div>
-          </a>
-        </li>
+            ))
+        }
       </ul>
-      <a href="#" class="c-btn c-btn:wide">記事・トピック一覧</a>
+      <a href="/posts" class="c-btn c-btn:wide">記事・トピック一覧</a>
     </div>
   </section>
 </BaseLayout>

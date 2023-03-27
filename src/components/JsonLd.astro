@@ -1,0 +1,204 @@
+---
+import dayjs from "dayjs"
+import timezone from "dayjs/plugin/timezone.js"
+import utc from "dayjs/plugin/utc.js"
+import setting from "../data/setting.json"
+const {
+  pageTitle,
+  pageDesc,
+  pageImg,
+  ogpType,
+  pubDate,
+  updateDate,
+  authorName,
+  authorFb,
+  authorTw,
+  authorInstagram,
+  authorWebsite,
+  postCategory,
+} = Astro.props
+const pagePath = Astro.url.pathname
+const baseUrl = setting.site.url
+const pageUrl = new URL(Astro.url.pathname, baseUrl)
+const siteTitle = setting.site.title ? setting.site.title : "サンプルサイト"
+const companyName = setting.company.name ? setting.company.name : "サンプル株式会社"
+const corpFb = setting.sns.fb ? setting.sns.fb : ""
+const corpTw = setting.sns.tw ? setting.sns.tw : ""
+const corpInsta = setting.sns.instagram ? setting.sns.instagram : ""
+const corpYoutube = setting.sns.youtube ? setting.sns.youtube : ""
+const imgFile = pageImg ? `${baseUrl}${pageImg}` : `${baseUrl}/img/ogp.png`
+const imgw = pageImg ? 1920 : 1200
+const imgh = pageImg ? 1080 : 630
+dayjs.extend(utc)
+dayjs.extend(timezone)
+dayjs.tz.setDefault("Asia/Tokyo")
+const publish = pubDate ? dayjs.tz(pubDate).format() : ""
+const update = updateDate ? dayjs.tz(updateDate).format() : ""
+const author = authorName ? authorName : companyName
+const authorType = authorName ? "Person" : "Organization"
+const authorUrl = authorName ? "" : baseUrl
+const authorSameAsFb = authorFb ? authorFb : setting.author.fb
+const authorSameAsTw = authorTw ? authorTw : setting.author.tw
+const authorSameAsInsta = authorInstagram ? authorInstagram : setting.author.instagram
+const authorSameAsUrl = authorWebsite ? authorWebsite : setting.author.url
+const SameAs01 = authorName ? authorSameAsFb : corpFb
+const SameAs02 = authorName ? authorSameAsTw : corpTw
+const SameAs03 = authorName ? authorSameAsInsta : corpInsta
+const SameAs04 = authorName ? authorSameAsUrl : setting.site.url
+
+let articleLd
+let articleSec = ""
+if (ogpType === "article") {
+  if (pagePath.match("/news")) {
+    articleSec = "お知らせ"
+  } else if (pagePath.match("/examples")) {
+    articleSec = "実績紹介"
+  } else {
+    articleSec = postCategory ? postCategory : "記事・トピック"
+  }
+  articleLd = {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${pageUrl}` },
+    name: `${pageTitle}`,
+    headline: `${pageTitle}`,
+    image: [{ "@type": "ImageObject", url: `${imgFile}`, width: `${imgw}`, height: `${imgh}` }],
+    articleSection: `${articleSec}`,
+    datePublished: `${publish}`,
+    dateModified: `${update}`,
+    author: {
+      "@type": `${authorType}`,
+      name: `${author}`,
+      url: `${authorUrl}`,
+      sameAs: [`${SameAs01}`, `${SameAs02}`, `${SameAs03}`, `${SameAs04}`],
+    },
+    publisher: {
+      "@type": "Organization",
+      name: `${companyName}`,
+      logo: {
+        "@type": "ImageObject",
+        url: `${baseUrl}/img/logo.svg`,
+        width: 25,
+        height: 32,
+      },
+    },
+    description: `${pageDesc}`,
+  }
+}
+
+const defaultDesc = setting.site.desc ? setting.site.desc : "サイト説明文が入ります。"
+const trimTarget = /-/g
+const tel = setting.company.tel ? setting.company.tel.replace(trimTarget, "") : "000-0000-0000".replace(trimTarget, "")
+const zip = setting.company.zip ? setting.company.zip.replace(trimTarget, "") : "000-0000".replace(trimTarget, "")
+const stripRegex =
+  /(東京都|北海道|(?:京都|大阪)府|.*県)((?:旭川|伊達|石狩|盛岡|奥州|田村|南相馬|那須塩原|東村山|武蔵村山|羽村|十日町|上越|富山|野々市|大町|蒲郡|四日市|姫路|大和郡山|廿日市|下松|岩国|田川|大村)市|.+?郡(?:玉村|大町|.+?)[町村]|.+?市|.+?[市区町村])(.+)/i
+const address = setting.company.address ? setting.company.address : "大阪府大阪市北区xx町x-xx-xx xxビル nF"
+const splitAddress = address.match(stripRegex)
+
+const corpCountry = "JA"
+const corpLd = {
+  "@context": "http://schema.org",
+  "@type": "Corporation",
+  name: `${companyName}`,
+  description: `${defaultDesc}`,
+  logo: `${baseUrl}/img/logo.svg`,
+  image: [`${baseUrl}/img/ogp.png`],
+  url: `${baseUrl}`,
+  telephone: `${tel}`,
+  sameAs: [`${corpFb}`, `${corpTw}`, `${corpInsta}`, `${corpYoutube}`],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: `${splitAddress[3]}`,
+    addressLocality: `${splitAddress[2]}`,
+    addressRegion: `${splitAddress[1]}`,
+    postalCode: `${zip}`,
+    addressCountry: `${corpCountry}`,
+  },
+}
+let breadLd
+let parentPath = ""
+let parentTitle = ""
+if (ogpType === "article") {
+  if (pagePath.match("/news")) {
+    parentPath = "/news"
+    parentTitle = "お知らせ"
+  } else if (pagePath.match("/examples")) {
+    parentPath = "/examples"
+    parentTitle = "実績紹介"
+  } else {
+    parentPath = "/posts"
+    parentTitle = "記事・トピック"
+  }
+  breadLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        item: {
+          "@id": `${baseUrl}`,
+          name: "トップページ",
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        item: {
+          "@id": `${baseUrl}${parentPath}`,
+          name: `${parentTitle}`,
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        item: {
+          "@id": `${pageUrl}`,
+          name: `${pageTitle}`,
+        },
+      },
+    ],
+  }
+} else {
+  breadLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        item: {
+          "@id": `${baseUrl}`,
+          name: "トップページ",
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        item: {
+          "@id": `${pageUrl}`,
+          name: `${pageTitle}`,
+        },
+      },
+    ],
+  }
+}
+const frontLd = {
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  name: `${siteTitle}`,
+  url: `${baseUrl}`,
+}
+let jsonLd = ``
+if (ogpType === "article") {
+  jsonLd = "[" + JSON.stringify(articleLd) + "," + JSON.stringify(breadLd) + "]"
+} else if (pagePath === "/") {
+  jsonLd = "[" + JSON.stringify(frontLd) + "," + JSON.stringify(corpLd) + "]"
+} else if (pagePath === "/company") {
+  jsonLd = "[" + JSON.stringify(breadLd) + "," + JSON.stringify(corpLd) + "]"
+} else {
+  jsonLd = JSON.stringify(breadLd)
+}
+---
+
+<script type="application/ld+json" set:html={jsonLd}></script>

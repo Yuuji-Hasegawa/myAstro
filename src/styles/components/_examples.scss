@@ -1,6 +1,10 @@
 @use "../settings" as setting;
 @use "../tools" as tool;
 
+.o-switcher\:c-examples-list {
+  margin-bottom: clamp(setting.spaces(l), calc((100vw - 768px) * 999), setting.spaces(xl));
+  gap: setting.spaces(m);
+}
 .c-examples-item {
   width: clamp(calc(50% - (setting.spaces(m) / 2)), calc((429px - 100vw) * 999), 100%);
   max-width: max(calc(768px - 100vw) * 999, calc((100% - setting.spaces(m) * 2) / 3));

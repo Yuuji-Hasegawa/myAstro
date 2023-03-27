@@ -1,11 +1,6 @@
 @use "../settings" as setting;
 @use "../tools" as tool;
 
-.c-entry a {
-  font-weight: setting.fontweight(m);
-}
-
-.c-entry a,
 .c-link {
   color: setting.brandcolor(base);
   text-decoration: underline;

@@ -1,0 +1,32 @@
+---
+import NewsPosts from "../../components/NewsPosts.astro"
+import Pagination from "../../components/Pagination.astro"
+import BaseLayout from "../../layouts/BaseLayout.astro"
+
+export async function getStaticPaths({ paginate }) {
+  const allNews = await Astro.glob("./*.md")
+  allNews.sort((a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date))
+  return paginate(allNews, {
+    pageSize: 1,
+  })
+}
+
+const { page } = Astro.props
+const pageTitle = "ニュース"
+const pageSubTitle = "NEWS"
+---
+
+<BaseLayout pageTitle={pageTitle} pageSubTitle={pageSubTitle} pageImg="/img/hero.png">
+  <section class="c-cushion">
+    <div class="o-container o-container:wrapper">
+      <ul class="o-stack o-stack:c-news">
+        {
+          page.data.map((post) => (
+            <NewsPosts url={post.url} title={post.frontmatter.title} date={post.frontmatter.date} />
+          ))
+        }
+      </ul>
+      <Pagination {page} />
+    </div>
+  </section>
+</BaseLayout>

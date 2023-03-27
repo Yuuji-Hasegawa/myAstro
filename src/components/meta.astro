@@ -1,25 +1,38 @@
 ---
 import setting from "../data/setting.json"
-const { pageTitle, pageImg, pageDesc, pageKeywords } = Astro.props
+const { pageTitle, pageImg, pageDesc, pageKeywords, ogpType } = Astro.props
 const pagePath = Astro.url.pathname
 const siteTitle = setting.site.title ? setting.site.title : "サンプルサイト"
 const title = pagePath == "/" ? setting.site.title : `${pageTitle} | ${siteTitle}`
-let ogpType = ""
-if (pagePath == "/") {
-  ogpType = "website"
-} else {
-  ogpType = "article"
+let robotsTxt = ""
+if (ogpType == "website") {
+  if (
+    pagePath.match("/news") ||
+    pagePath.match("/examples") ||
+    pagePath.match("/examples-cat") ||
+    pagePath.match("/posts") ||
+    pagePath.match("/category") ||
+    pagePath.match("/tags")
+  ) {
+    if (pageTitle == "見つかりませんでした") {
+      robotsTxt = "noindex, nofollow"
+    } else {
+      robotsTxt = "noindex,follow"
+    }
+  } else if (pageTitle == "見つかりませんでした") {
+    robotsTxt = "noindex, nofollow"
+  }
 }
 const ogpTitle = pageTitle ? pageTitle : siteTitle
 const baseUrl = setting.site.url
 const url = new URL(Astro.url.pathname, baseUrl)
-const robots = "noindex, nofollow"
+const robots = robotsTxt ? robotsTxt : "index, follow"
 const description = pageDesc ? pageDesc : setting.site.desc
 const keywords = pageKeywords ? pageKeywords + "," + setting.site.keywords.join(",") : setting.site.keywords.join(",")
 const ogpLang = setting.site.locale
 const twCreator = setting.sns.twC
 const twSite = setting.sns.twS
-const imgurl = pageImg ? `${baseUrl}/${pageImg}` : `${baseUrl}/img/ogp.png`
+const imgurl = pageImg ? `${baseUrl}${pageImg}` : `${baseUrl}/img/ogp.png`
 const themeColor = setting.site.themeColor ? setting.site.themeColor : "#ffffff"
 const shortName = setting.site.shortName ? setting.site.shortName : `${siteTitle}`
 const manifestJson = `${baseUrl}/manifest.json`

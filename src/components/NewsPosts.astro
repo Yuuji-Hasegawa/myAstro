@@ -1,8 +1,13 @@
 ---
-const { title, url, datetime, year, month, date } = Astro.props
+import dayjs from "dayjs"
+
+import "../styles/components/_news.scss"
+const { title, url, date } = Astro.props
+const dateTime = dayjs(`${date}`).format("YYYY-MM-DD")
+const formatDate = dayjs(`${date}`).format("YYYY年MM月DD日")
 ---
 
 <li class="o-switcher o-switcher:c-news">
-  <time datetime={datetime}>{year}.{month}.{date}</time>
+  <time datetime={dateTime}>{formatDate}</time>
   <a class="c-news-title" href={url}>{title}</a>
 </li>

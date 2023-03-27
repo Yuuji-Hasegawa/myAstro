@@ -1,0 +1,43 @@
+---
+import ExamplesPosts from "../../../components/ExamplesPosts.astro"
+import Pagination from "../../../components/Pagination.astro"
+import BaseLayout from "../../../layouts/BaseLayout.astro"
+
+export async function getStaticPaths({ paginate }) {
+  const allExamples = await Astro.glob("../../examples/*.md")
+  const uniqueCats = [...new Set(allExamples.map((post) => post.frontmatter.cat).flat())]
+  return uniqueCats.map((cat) => {
+    const filteredExamples = allExamples.filter((post) => post.frontmatter.cat.includes(cat))
+    return paginate(filteredExamples, {
+      params: { cat },
+      props: { posts: filteredExamples },
+      pageSize: 12,
+    })
+  })
+}
+const { page } = Astro.props
+const { cat } = Astro.params
+const pageTitle = "カテゴリー : " + cat
+const pageSubTitle = "CATEGORY : " + cat
+---
+
+<BaseLayout pageTitle={pageTitle} pageSubTitle={pageSubTitle} pageImg="/img/hero.png">
+  <section class="c-cushion">
+    <div class="o-container o-container:wrapper">
+      <ul class="o-switcher o-switcher:c-examples-list">
+        {
+          page.data.map((post) => (
+            <ExamplesPosts
+              url={post.url}
+              title={post.frontmatter.title}
+              img={post.frontmatter.date}
+              client={post.frontmatter.client}
+              cat={post.frontmatter.cat}
+            />
+          ))
+        }
+      </ul>
+      <Pagination {page} />
+    </div>
+  </section>
+</BaseLayout>

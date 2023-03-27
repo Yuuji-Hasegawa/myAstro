@@ -1,0 +1,56 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+.o-switcher {
+  &\:p-service-media {
+    gap: setting.spaces(m);
+    margin-bottom: clamp(setting.spaces(m), calc((100vw - 768px) * 999), setting.spaces(xl));
+  }
+  &\:full-half {
+    gap: setting.spaces(xl);
+  }
+}
+.p-service-item,
+.p-service-media-pict,
+.p-service-media-txt {
+  width: 100%;
+}
+.p-service-media-pict,
+.p-service-media-txt {
+  max-width: max(calc(768px - 100vw) * 999, calc(50% - (setting.spaces(m) / 2)));
+}
+.o-has-icon\:p-service-name {
+  align-items: center;
+  gap: setting.spaces(2xs);
+  margin-bottom: clamp(setting.spaces(base), calc((100vw - 768px) * 999), setting.spaces(l));
+}
+.c-logo\:p-service-logo {
+  font-size: clamp(38px, calc((100vw - 768px) * 999), 80px);
+}
+.p-service-name-label {
+  font-family: setting.$font-family-en;
+  font-weight: setting.fontweight(b);
+  font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(xl));
+}
+.c-under-heading\:p-service {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  &__font-en {
+    font-family: setting.$font-family-en;
+    font-weight: setting.fontweight(b);
+  }
+}
+.p-service-item {
+  max-width: max(calc(768px - 100vw) * 999, calc(50% - (setting.spaces(xl) / 2)));
+  &__heading {
+    line-height: setting.lineheight(heading);
+    font-size: clamp(setting.fontsize(m), calc((100vw - 768px) * 999), setting.fontsize(l));
+    font-weight: setting.fontweight(b);
+    margin-top: clamp(setting.spaces(base), calc((100vw - 768px) * 999), setting.spaces(m));
+    margin-bottom: clamp(setting.spaces(base), calc((100vw - 768px) * 999), setting.spaces(m));
+  }
+}
+.c-btn\:service-item {
+  margin-left: 0;
+  margin-top: setting.spaces(m);
+}

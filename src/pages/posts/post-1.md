@@ -1,16 +1,21 @@
 ---
-layout: ../../layouts/BaseLayout.astro
+layout: ../../layouts/PostsLayout.astro
 title: "My First Post"
-pubDate: 2023-03-03
+date: 2023-03-03
+update: 2023-03-04
 description: "This is the first post"
+keywords: ["keywords1", "keyword2", "keywords3"]
 author: "Astro Learner"
-image:
-  url: "https://astro.build/assets/blog/astro-1-release-update/cover.jpeg"
-  alt: "The Astro logo with the word One."
-tags: ["astro", "blogging", "learning in public"]
+desc: "Astro Learner description"
+fb: "https://www.facebook.com"
+tw: "https://twitter.com"
+instagram: "https://instagram.com"
+website: "https://google.com"
+profile: "/img/profile.png"
+image: "/img/hero.png"
+cat: ""
+tags: ["astro", "blogging", "learning"]
 ---
-
-# My First Blog Post
 
 Welcome to my _new blog_ about learning Astro!
 
@@ -25,3 +30,11 @@ Welcome to my _new blog_ about learning Astro!
 ## What's next
 
 I will finish the Astro tutorial
+
+### aaa
+
+### bbb
+
+## hhhhh
+
+### mmmmm

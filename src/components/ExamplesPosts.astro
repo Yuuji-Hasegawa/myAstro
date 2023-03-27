@@ -1,0 +1,23 @@
+---
+import "../styles/components/_examples.scss"
+const { title, url, thumb, cat, client } = Astro.props
+const thumbImg = thumb ? thumb : "/img/thumb.png"
+let fileName = thumbImg.match(/\.(png|jpe?g)$/i) ? thumbImg.replace(/\.(svg|gif|png|jpe?g)$/i, "") : "/img/thumb"
+let avif = `${fileName}.avif`
+let webp = `${fileName}.webp`
+---
+
+<li class="c-examples-item">
+  <a class="o-stack o-stack:examples" href={url} aria-label="go to example" title={title}>
+    <picture class="o-frame o-frame:square">
+      <source type="image/avif" srcset={avif} />
+      <source type="image/webp" srcset={webp} />
+      <img src={thumbImg} width="100%" height="100%" loading="lazy" decoding="async" fetchpriority="low" alt="" />
+    </picture>
+    <div class="o-stack o-stack:item-inner">
+      <span class="c-examples-label c-examples-label:name">{client}</span>
+      <h3 class="c-examples-title">{title}</h3>
+      <span class="c-examples-label c-examples-label:cat">{cat}</span>
+    </div>
+  </a>
+</li>

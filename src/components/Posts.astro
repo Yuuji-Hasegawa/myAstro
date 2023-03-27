@@ -1,0 +1,45 @@
+---
+import "dayjs/locale/ja.js"
+import dayjs, { locale, extend } from "dayjs"
+import relativeTime from "dayjs/plugin/relativeTime.js"
+
+import "../styles/components/_posts.scss"
+
+locale("ja")
+extend(relativeTime)
+const { title, url, date, author, profile, thumb, cat } = Astro.props
+const thumbImg = thumb ? thumb : "/img/thumb.png"
+let fileName = thumbImg.match(/\.(png|jpe?g)$/i) ? thumbImg.replace(/\.(svg|gif|png|jpe?g)$/i, "") : "/img/thumb"
+let avif = `${fileName}.avif`
+let webp = `${fileName}.webp`
+const profImg = profile ? profile : "/img/prof.png"
+let profFile = profImg.match(/\.(png|jpe?g)$/i) ? profImg.replace(/\.(svg|gif|png|jpe?g)$/i, "") : "/img/thumb"
+let profAvif = `${profFile}.avif`
+let profWebp = `${profFile}.webp`
+const dateTime = dayjs(`${date}`).format("YYYY-MM-DD")
+const formatDate = dayjs(`${date}`).fromNow()
+---
+
+<li class="c-posts-item">
+  <a class="o-stack o-stack:posts" href={url} aria-label="go to post" title={title}>
+    <picture class="o-frame">
+      <source type="image/avif" srcset={avif} />
+      <source type="image/webp" srcset={webp} />
+      <img src={thumbImg} width="100%" height="100%" loading="lazy" decoding="async" fetchpriority="low" alt="" />
+    </picture>
+    <div class="o-grid o-grid:posts">
+      <picture class="o-frame o-frame:square">
+        <source type="image/avif" srcset={profAvif} />
+        <source type="image/webp" srcset={profWebp} />
+        <img src={profImg} width="100%" height="100%" loading="lazy" decoding="async" fetchpriority="low" alt="" />
+      </picture>
+      <div class="o-stack o-stack:posts-bottom">
+        <h3 class="c-posts-trim c-posts-trim:title">{title}</h3>
+        <span class="c-posts-trim c-posts-trim:author">{author}</span>
+        <div class="o-cluster o-cluster:posts-bottom">
+          <span>{cat}</span>|<time class="c-posts-date" datetime={dateTime}>{formatDate}</time>
+        </div>
+      </div>
+    </div>
+  </a>
+</li>

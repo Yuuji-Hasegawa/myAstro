@@ -16,6 +16,60 @@ const pagePath = Astro.url.pathname
         </svg>
       </a>
     </li>
+    {
+      pagePath.match(/news\/\D+/gm) && (
+        <li class="c-breadcrumb-item">
+          <a class="c-breadcrumb-link" href="/news">
+            お知らせ
+          </a>
+        </li>
+      )
+    }
+    {
+      pagePath.match(/examples\/\D+/gm) && (
+        <li class="c-breadcrumb-item">
+          <a class="c-breadcrumb-link" href="/examples">
+            実績紹介
+          </a>
+        </li>
+      )
+    }
+    {
+      pagePath.match(/examples-cat\/\D+/gm) && (
+        <li class="c-breadcrumb-item">
+          <a class="c-breadcrumb-link" href="/examples">
+            実績紹介
+          </a>
+        </li>
+      )
+    }
+    {
+      pagePath.match(/category\/\D+/gm) && (
+        <li class="c-breadcrumb-item">
+          <a class="c-breadcrumb-link" href="/posts">
+            記事・トピック
+          </a>
+        </li>
+      )
+    }
+    {
+      pagePath.match(/tags\/\D+/gm) && (
+        <li class="c-breadcrumb-item">
+          <a class="c-breadcrumb-link" href="/posts">
+            記事・トピック
+          </a>
+        </li>
+      )
+    }
+    {
+      pagePath.match(/posts\/\D+/gm) && (
+        <li class="c-breadcrumb-item">
+          <a class="c-breadcrumb-link" href="/posts">
+            記事・トピック
+          </a>
+        </li>
+      )
+    }
     <li class="c-breadcrumb-item"><a class="c-breadcrumb-link" href={pagePath} aria-current="page">{pageTitle}</a></li>
   </ol>
 </nav>

@@ -1,16 +1,15 @@
 ---
-layout: ../../layouts/BaseLayout.astro
-title: "My First Post"
-pubDate: 2023-05-03
-description: "This is the first post"
+layout: ../../layouts/NewsLayout.astro
+title: "My Third Post"
+date: 2023-03-06
+update: 2023-03-06
+description: "This is the second post"
+keywords: ["keywords1", "keyword2", "keywords3"]
 author: "Astro Learner"
-image:
-  url: "https://astro.build/assets/blog/astro-1-release-update/cover.jpeg"
-  alt: "The Astro logo with the word One."
+sameAs: ["https://www.facebook.com", "https://twitter.com", ""]
+image: "/img/hero.png"
 tags: ["astro", "blogging", "learning in public"]
 ---
-
-# My First Blog Post
 
 Welcome to my _new blog_ about learning Astro!
 

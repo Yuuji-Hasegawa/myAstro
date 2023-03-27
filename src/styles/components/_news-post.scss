@@ -1,0 +1,26 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+.c-news-heading {
+  font-weight: setting.fontweight(b);
+  font-size: clamp(setting.fontsize(m), calc((100vw - 650px) * 999), setting.fontsize(l));
+  line-height: setting.lineheight(heading);
+  & + * {
+    margin-top: setting.spaces(m);
+  }
+}
+.o-cluster\:post-time {
+  gap: setting.spaces(m);
+  margin-bottom: setting.spaces(m);
+}
+.o-has-icon\:post-time {
+  align-items: baseline;
+  font-size: setting.fontsize(xs);
+  color: var(--c-dimmed);
+  gap: setting.spaces(3xs);
+}
+.c-post-time-icon {
+  line-height: 1;
+}
+.c-post-time-label {
+  font-family: setting.$font-family-en;
+}

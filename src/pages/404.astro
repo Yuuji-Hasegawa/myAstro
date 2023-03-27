@@ -1,0 +1,24 @@
+---
+import setting from "../data/setting.json"
+import BaseLayout from "../layouts/BaseLayout.astro"
+
+import "../styles/components/_c-under.scss"
+import "../styles/components/_404.scss"
+const pageTitle = "見つかりませんでした"
+const pageSubTitle = "NOT FOUND"
+const baseUrl = setting.site.url
+const url = new URL(Astro.url.pathname, baseUrl)
+---
+
+<BaseLayout pageTitle={pageTitle} pageSubTitle={pageSubTitle} pageImg="/img/hero.png">
+  <section class="c-cushion">
+    <div class="o-container o-container:wrapper">
+      <h2 class="c-under-heading">お探しのページは見つかりませんでした</h2>
+      <p class="c-under-txts">
+        お探しのページ (URL:{url})は、一時的にアクセスできない状況にあるか、移動もしくは削除された可能性があります。<br
+        />お手数ですがトップページから再度お探しください。
+      </p>
+      <a href="/" class="c-btn c-btn:notfound">トップページへ</a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,116 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+.c-under-txts\:terms {
+  margin-bottom: setting.spaces(l);
+}
+.c-term-date {
+  text-align: right;
+  font-size: setting.fontsize(xs);
+}
+.c-term-emphasis {
+  display: block;
+  font-weight: setting.fontweight(b);
+}
+.c-disc-list {
+  list-style-position: outside;
+  padding-left: setting.spaces(m);
+  list-style-type: disc;
+}
+.c-count-list {
+  &\:sec {
+    counter-reset: sec;
+  }
+
+  &\:sub-sec {
+    counter-reset: subsec;
+  }
+
+  &__item {
+    position: relative;
+    padding-left: calc(setting.spaces(base) * 2);
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 2rem;
+      text-align: center;
+    }
+
+    .c-count-list\:sec & {
+      counter-increment: sec;
+
+      &::before {
+        content: counter(sec) ".";
+      }
+    }
+
+    .c-count-list\:sub-sec & {
+      counter-increment: subsec;
+
+      &::before {
+        content: "(" counter(subsec) ")";
+      }
+    }
+  }
+}
+.c-table {
+  display: flex;
+  flex-wrap: wrap;
+  border-color: var(--c-border);
+  border-style: solid;
+  border-width: 0 0px 1px 0;
+  &:first-of-type {
+    margin-top: setting.spaces(base);
+  }
+  &__thead,
+  &__tbody {
+    width: 100%;
+    padding: clamp(setting.spaces(m), calc((100vw - 768px) * 999), setting.spaces(l)) 0;
+  }
+  &__thead {
+    font-weight: setting.fontweight(m);
+    color: var(--c-dimmed);
+    max-width: max(calc(768px - 100vw) * 999, 240px);
+    border-color: var(--c-border);
+    border-style: solid;
+    border-width: 0 0px clamp(0px, calc((768px - 100vw) * 999), 1px) 0;
+    .c-table:first-of-type & {
+      padding-top: 0;
+    }
+  }
+  &__tbody {
+    max-width: max(calc((768px - 100vw) * 999), calc(100% - 240px));
+    .c-table:first-of-type & {
+      padding-top: clamp(0px, calc((768px - 100vw) * 999), setting.spaces(m));
+    }
+  }
+}
+.c-link {
+  text-decoration: underline;
+  font-weight: setting.fontweight(m);
+  transition: all setting.animes(duration) setting.animes(timing);
+  position: relative;
+  &::before {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 50px;
+    min-width: 50px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    content: "";
+  }
+  &:hover,
+  &:focus {
+    color: setting.brandcolor(base);
+    text-decoration: none;
+    opacity: setting.animes(opacity);
+  }
+}
+.o-has-icon\:count {
+  gap: setting.spaces(2xs);
+  padding-right: max(calc(650px - 100vw) * 999, setting.spaces(base));
+}

@@ -1,0 +1,67 @@
+@use "../settings" as setting;
+@use "../tools" as tool;
+.c-example-heading {
+  font-weight: setting.fontweight(b);
+  font-size: clamp(setting.fontsize(m), calc((100vw - 650px) * 999), setting.fontsize(l));
+  line-height: setting.lineheight(heading);
+  & + * {
+    margin-top: setting.spaces(m);
+  }
+}
+.c-example-client {
+  font-weight: setting.fontweight(b);
+  color: setting.brandcolor(base);
+  font-size: setting.fontsize(m);
+  position: relative;
+  display: flex;
+  gap: setting.spaces(xs);
+  &:before {
+    content: "";
+    width: 28px;
+    height: 2px;
+    background: setting.brandcolor(base);
+    flex-shrink: 0;
+    margin-top: calc(setting.fontsize(m) / setting.lineheight(reset));
+  }
+  & + * {
+    margin-top: setting.spaces(base);
+  }
+}
+.c-examples-bottom {
+  border-width: 1px 0;
+  border-color: var(--c-separator);
+  border-style: solid;
+  padding-top: clamp(setting.spaces(l), calc((100vw - 768px) * 999), setting.spaces(xl));
+  padding-bottom: clamp(setting.spaces(l), calc((100vw - 768px) * 999), setting.spaces(xl));
+  margin-bottom: clamp(setting.spaces(l), calc((100vw - 768px) * 999), setting.spaces(xl));
+}
+.c-examples-bottom-heading {
+  font-weight: setting.fontweight(b);
+  font-family: setting.$font-family-en;
+  font-size: clamp(setting.fontsize(m), calc((100vw - 650px) * 999), setting.fontsize(l));
+  position: relative;
+  display: flex;
+  gap: setting.spaces(xs);
+  align-items: center;
+  &:before {
+    content: "";
+    width: 28px;
+    height: 2px;
+    background: var(--c-txt);
+    flex-shrink: 0;
+  }
+  & + * {
+    margin-top: setting.spaces(base);
+  }
+}
+.c-examples-bottom-title {
+  color: var(--c-dimmed);
+  font-weight: setting.fontweight(b);
+  font-family: setting.$font-family-en;
+}
+.c-examples-bottom-content {
+  font-weight: setting.fontweight(m);
+  & + * {
+    margin-top: setting.spaces(m);
+  }
+}
