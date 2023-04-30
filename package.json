@@ -55,7 +55,7 @@
     "stylelint": "^15.2.0",
     "stylelint-config-recess-order": "^4.0.0",
     "stylelint-prettier": "^3.0.0",
-    "stylelint-scss": "^4.4.0"
+    "stylelint-scss": "^5.0.0"
   },
   "devDependencies": {
     "dayjs": "^1.11.7",

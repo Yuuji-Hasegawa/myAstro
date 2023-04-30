@@ -33,7 +33,7 @@ specifiers:
   stylelint: ^15.2.0
   stylelint-config-recess-order: ^4.0.0
   stylelint-prettier: ^3.0.0
-  stylelint-scss: ^4.4.0
+  stylelint-scss: ^5.0.0
 
 dependencies:
   '@astrojs/partytown': 1.1.0
@@ -66,7 +66,7 @@ dependencies:
   stylelint: 15.2.0
   stylelint-config-recess-order: 4.0.0_stylelint@15.2.0
   stylelint-prettier: 3.0.0_7tfqzuwksfwysdxnjpqifqt36u
-  stylelint-scss: 4.4.0_stylelint@15.2.0
+  stylelint-scss: 5.0.0_stylelint@15.2.0
 
 devDependencies:
   dayjs: 1.11.7
@@ -4127,10 +4127,6 @@ packages:
     resolution: {integrity: sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==}
     dev: false
 
-  /lodash/4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: false
-
   /log-symbols/5.1.0:
     resolution: {integrity: sha512-l0x2DvrW294C9uDCoQe1VSU4gf529FkSZ6leBl4TiqZH/e+0R7hSfHQBNut2mNygDgHwvYHfFLn6Oxb3VWj2rA==}
     engines: {node: '>=12'}
@@ -6557,12 +6553,11 @@ packages:
       stylelint: 15.2.0
     dev: false
 
-  /stylelint-scss/4.4.0_stylelint@15.2.0:
-    resolution: {integrity: sha512-Qy66a+/30aylFhPmUArHhVsHOun1qrO93LGT15uzLuLjWS7hKDfpFm34mYo1ndR4MCo8W4bEZM1+AlJRJORaaw==}
+  /stylelint-scss/5.0.0_stylelint@15.2.0:
+    resolution: {integrity: sha512-5Ee5kG3JIcP2jk2PMoFMiNmW/815V+wK5o37X5ke90ihWMpPXI9iyqeA6zEWipWSRXeQc0kqbd7hKqiR+wPKNA==}
     peerDependencies:
       stylelint: ^14.5.1 || ^15.0.0
     dependencies:
-      lodash: 4.17.21
       postcss-media-query-parser: 0.2.3
       postcss-resolve-nested-selector: 0.1.1
       postcss-selector-parser: 6.0.11
