@@ -25,8 +25,8 @@
     "image:clean": "rimraf src/public/img"
   },
   "dependencies": {
-    "@astrojs/partytown": "^1.1.0",
-    "astro": "^2.0.17",
+    "@astrojs/partytown": "^2.0.0",
+    "astro": "^7.0.0",
     "astro-compress": "^1.1.35",
     "autoprefixer": "^10.4.13",
     "css-declaration-sorter": "^6.3.1",
